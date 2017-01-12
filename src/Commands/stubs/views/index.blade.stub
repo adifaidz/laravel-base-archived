@@ -1,0 +1,65 @@
+@extends('layouts.{{type}}')
+
+@section('title')
+  {{modelhuman}} List
+@endsection
+
+@section('head')
+  <script>
+    window.Laravel = { csrfToken: '{{ csrf_token() }}' };
+    var params = {
+      columns: [
+        {
+          name:'id',
+          visible: false
+        },
+        {
+          name:'name',
+          sortField: 'name'
+        },
+        {
+          name:'type.desc',
+          title: 'Type'
+        },
+        {
+          name:'status.desc',
+          title: 'Status',
+        },
+        {
+          name:'__component:base-actions'
+        }
+      ],
+      sortOrder: [{
+          field: 'name',
+          direction: 'asc',
+      }]
+    }
+  </script>
+@endsection
+
+@section('page-header')
+  {{modelhuman}}
+@endsection
+
+@section('page-desc')
+  {{modelhuman}} List
+@endsection
+
+@section('content')
+  <div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{modelhuman}} List</h3></div>
+    <div class="box-body">
+      <generic-table
+        api-url="{{route('api.{{modelname}}')}}"
+        create-url="{{route('{{viewpath}}.create')}}"
+        show-url="{{route('{{viewpath}}.show', ['id' => null])}}"
+        edit-url="{{route('{{viewpath}}.edit', ['id' => null])}}"
+        delete-url="{{route('{{viewpath}}.destroy', ['id' => null])}}"
+        :columns="get('columns')"
+        :sort-order="get('sortOrder')"
+      ></generic-table>
+    </div>
+    <div class="box-footer"></div>
+</div>
+@endsection

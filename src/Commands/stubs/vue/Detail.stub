@@ -1,0 +1,55 @@
+<template lang="html">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form>
+        <div class="">
+          //Form body
+          <h3>Detail</h3>
+        </div>
+      </form>
+    </div>
+    <div class="panel-footer text-right">
+      <a :href="editUrl" class="btn btn-primary">Edit</a>
+      <button type="button" class="btn btn-danger" @click="deleteData">Delete</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    {{modelname}}: {
+      type: Object,
+      required: true
+    },
+    editUrl: {
+      type: String,
+      required: true
+    },
+    deleteUrl: {
+      type: String,
+      required: true
+    },
+    redirectUrl: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    deleteData: function(){
+      this.$http.delete(this.deleteUrl).then(
+        (response) => {
+          console.log(response);
+          window.location.href = this.redirectUrl
+        },
+        (response) => {
+          console.log(response);
+        }
+      )
+    }
+  }
+}
+</script>
+
+<style lang="css">
+</style>

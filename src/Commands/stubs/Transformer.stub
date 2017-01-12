@@ -1,0 +1,16 @@
+<?php
+
+namespace {{namespace}};
+
+use AdiFaidz\Base\Transformers\Transformer;
+
+{{modelnamespace}}
+
+class {{class}} extends Transformer
+{
+    public function transform({{param}}){
+        return [
+          {{structure}}
+        ];
+    }
+}

@@ -1,0 +1,25 @@
+
+//Routes for {{modelnamespace}}
+
+Route::bind('{{modelname}}', function ($value){
+  try {
+    return \{{modelnamespace}}::findOrFail($value);
+  } catch (Exception $e) {
+    return App::abort('404');
+  }
+}) ;
+
+Route::resource('{{routeurl}}', '{{controller}}Controller', ['except' => ['edit','show'], 'as' => '{{type}}']);
+
+Route::group(['prefix' => '{{routeurl}}'], function () {
+
+  Route::get('/edit/{{{modelname}}}', [
+    'as' => '{{routename}}.edit',
+    'uses' => '{{controller}}Controller@edit',
+  ]);
+
+  Route::get('/show/{{{modelname}}}', [
+    'as' => '{{routename}}.show',
+    'uses' => '{{controller}}Controller@show',
+  ]);
+});

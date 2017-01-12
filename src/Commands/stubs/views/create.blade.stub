@@ -1,0 +1,24 @@
+@extends('layouts.{{type}}')
+
+@section('title')
+  Create {{modelhuman}}
+@endsection
+
+@section('page-header')
+  {{modelhuman}}
+@endsection
+
+@section('page-desc')
+  Create {{modelhuman}}
+@endsection
+
+@section('content')
+  <div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Create {{modelhuman}}</h3></div>
+    <div class="box-body">
+      @include('{{viewpath}}.partial.form', ['route'=> route('{{viewpath}}.store'), 'method' => 'post'])
+    </div>
+    <div class="box-footer"></div>
+</div>
+@endsection

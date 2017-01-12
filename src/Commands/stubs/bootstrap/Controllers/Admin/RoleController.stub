@@ -1,0 +1,132 @@
+<?php
+
+namespace {{rootnamespace}}\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use Validator;
+
+use {{rootnamespace}}\Http\Controllers\Controller;
+use {{rootnamespace}}\Transformers\RoleTransformer;
+use {{rootnamespace}}\Role;
+use {{rootnamespace}}\Permission;
+
+class RoleController extends Controller
+{
+
+    function __construct(RoleTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('admin.role.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.role.create')->with($this->getFormReference());
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $role = new Role;
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+        $role->savePermissions(json_decode($request->permissions));
+
+        return redirect()->route('admin.role.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Role $role)
+    {
+        $roleJson = json_encode($this->transformer->transform($role));
+        return view('admin.role.show',compact('role', 'roleJson'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Role $role)
+    {
+        $roleJson = json_encode($this->transformer->transform($role));
+        return view('admin.role.edit',compact('role', 'roleJson'))->with($this->getFormReference());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Role $role)
+    {
+        $this->validator($request->all())->validate();
+
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+        $role->savePermissions(json_decode($request->permissions));
+
+        return redirect()->route('admin.role.show', ['id' => $role->id]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Role $role)
+    {
+        $role->delete();
+
+        if(request()->ajax())
+          return $role;
+
+        return redirect()->route('admin.role.index');
+    }
+
+    public function getFormReference()
+    {
+      return [
+        'permissions' => Permission::all(['id','display_name']),
+      ];
+    }
+
+    public function validator(array $data)
+    {
+      return Validator::make($data, []);
+    }
+}

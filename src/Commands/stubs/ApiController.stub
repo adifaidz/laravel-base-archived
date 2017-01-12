@@ -1,0 +1,26 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Http\Request;
+
+use {{modelnamespace}};
+use {{transformernamespace}};
+use {{paginatornamespace}};
+
+class {{class}} extends ApiController
+{
+    function __construct({{modelclass}}Transformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    public function {{modelname}}(Request $request)
+    {
+        $paginator = new {{modelclass}}Paginator($this->transformer);
+
+        $json = $paginator->getJson();
+
+        return response()->json($json);
+    }
+}

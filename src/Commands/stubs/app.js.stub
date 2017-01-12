@@ -1,0 +1,3 @@
+
+Vue.component('{{vuepath}}-view', require('./components/{{vuefilepath}}/Detail.vue'))
+Vue.component('{{vuepath}}-form', require('./components/{{vuefilepath}}/Form.vue'))

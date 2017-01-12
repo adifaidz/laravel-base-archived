@@ -1,0 +1,46 @@
+<template lang="html">
+  <form>
+    //Form body
+    <h3>Form</h3>
+    <div class="form-group">
+      <slot></slot>
+      <input class="btn btn-primary" type="submit" name="submit" value="Save">
+    </div>
+  </form>
+</template>
+
+<script>
+export default {
+  props:{
+    {{modelname}}: {
+      type: Object,
+      required: false,
+      default: function(){
+        return {}
+      }
+    }
+  },
+  data: function(){
+    var isEmpty = function(obj){
+      for(var prop in obj) {
+          if(obj.hasOwnProperty(prop))
+              return false;
+      }
+
+      return true && JSON.stringify(obj) === JSON.stringify({});
+    }
+
+    return{
+      //Handles form values eg: name: isEmpty(this.{{modelname}}) ? "": this.{{modelname}}.name,
+    }
+  },
+  mounted: function(){
+    var hiddenMethod = document.getElementsByName('_method')[0]
+
+    if(hiddenMethod.value == "put"){this.$el.method = 'post'}
+  }
+}
+</script>
+
+<style lang="css">
+</style>

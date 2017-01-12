@@ -1,0 +1,24 @@
+<?php
+
+namespace {{namespace}};
+
+use AdiFaidz\Base\Transformers\Transformer;
+use AdiFaidz\Base\Paginators\Paginator;
+
+class {{class}} extends Paginator {
+  protected $model = '{{model}}';
+
+  public function __construct(Transformer $transformer){
+    $this->transformer = $transformer;
+  }
+
+  public function filterData($data){
+    $data->where(function($q) {
+      $filter = request()->filter;
+      $value = "%$filter%";
+      $q{{query}};
+    });
+
+    return $data;
+  }
+}

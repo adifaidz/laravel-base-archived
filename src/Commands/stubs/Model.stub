@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+use AdiFaidz\Base\Traits\TableInfoTrait;
+
+class DummyClass extends Model
+{
+    use TableInfoTrait;
+}
