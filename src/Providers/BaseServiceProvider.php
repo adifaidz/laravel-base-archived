@@ -33,6 +33,10 @@ class BaseServiceProvider extends ServiceProvider
         foreach ($this->providers as $provider) {
             $this->instances[] = $this->app->register($provider);
         }
+
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('Laratrust', 'Laratrust\LaratrustFacade');
+        $loader->alias('Menu', 'Lavary\Menu\Facade');
     }
 
     public function provides()
