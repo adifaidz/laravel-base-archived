@@ -7,9 +7,9 @@ use Illuminate\Support\ServiceProvider;
 class BaseServiceProvider extends ServiceProvider
 {
     protected $providers = [
-      Laratrust\LaratrustServiceProvider::class,
-      AdiFaidz\Clean\Providers\CleanServiceProvider::class,
-      Lavary\Menu\ServiceProvider::class,
+      \Laratrust\LaratrustServiceProvider::class,
+      \AdiFaidz\Clean\Providers\CleanServiceProvider::class,
+      \Lavary\Menu\ServiceProvider::class,
     ];
 
     /**
