@@ -1,6 +1,6 @@
 <?php
 
-namespace Chart\Console\Commands;
+namespace AdiFaidz\Base\Commands;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;

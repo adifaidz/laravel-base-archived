@@ -1,8 +1,8 @@
 <?php
 
-namespace Chart\Console\Commands;
+namespace AdiFaidz\Base\Commands;
 
-use Chart\Console\Commands\GeneratorCommand;
+use AdiFaidz\Base\Commands\GeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 
 class PaginatorMakeCommand extends GeneratorCommand
