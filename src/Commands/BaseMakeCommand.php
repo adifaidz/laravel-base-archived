@@ -5,7 +5,7 @@ namespace AdiFaidz\Base\Commands;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-class ViewMakeCommand extends GeneratorCommand
+class BaseMakeCommand extends GeneratorCommand
 {
     protected $signature = 'base:install';
 
@@ -22,20 +22,19 @@ class ViewMakeCommand extends GeneratorCommand
 
     public function handle()
     {
-      $name = $this->getNameInput();
-
-      $viewStubs = $this->filesystem->allFiles($this->getViewStubs());
+      $viewStubs = $this->filesystem->allFiles($this->getStub());
 
       foreach ($viewStubs as $stub) {
         $path = str_replace($this->getStub(), app_path(), $stub->getPathName());
         $path = str_replace('.stub', '.php', $path);
 
+        $stubContent = $this->filesystem->get($stub->getPathName());
+
         $args['stub'] = $this->filesystem->get($stub->getPathName());
         $this->makeDirectory($path);
-        $this->filesystem->put($path, $this->buildClass(['stub' => $stub]));
+        $this->filesystem->put($path, $this->buildClass(['stub' => $stubContent]));
       }
 
-      $this->appendAppJs($name, $args);
       $this->info("{$this->type} created successfully.");
     }
 
@@ -53,8 +52,14 @@ class ViewMakeCommand extends GeneratorCommand
 
     public function replaceNamespace(&$stub)
     {
-      $stub = str_replace($this->laravel->getNamespace(), '{{rootnamespace}}', $stub);
+      $namespace = rtrim($this->laravel->getNamespace(), "\\");
+      $stub = str_replace('{{rootnamespace}}', $namespace, $stub);
 
       return $this;
+    }
+
+    protected function getDefaultNamespace($rootNamespace)
+    {
+      return $rootNamespace;
     }
 }
