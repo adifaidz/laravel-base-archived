@@ -17,7 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        foreach ($composers as $matchViews => $composer) {
+        foreach ($this->composers as $matchViews => $composer) {
             $views = array_map('trim', explode(',', $matchViews));
 
             view()->composer($views, $composer);
