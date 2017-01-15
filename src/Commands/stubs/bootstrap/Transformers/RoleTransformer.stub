@@ -7,7 +7,7 @@ use {{rootnamespace}}\Role;
 
 class RoleTransformer extends Transformer
 {
-    public function transform($item){
+    public function transform(Role $item){
         $permissions = [];
 
         foreach ($item->permissions as $permission) {

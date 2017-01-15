@@ -7,7 +7,7 @@ use {{rootnamespace}}\User;
 
 class UserTransformer extends Transformer
 {
-    public function transform($item){
+    public function transform(User $item){
         $roles = [];
 
         foreach ($item->roles as $role) {

@@ -7,7 +7,7 @@ use {{rootnamespace}}\UserProfile;
 
 class UserProfileTransformer extends Transformer
 {
-    public function transform($item){
+    public function transform(UserProfile $item){
         return [
           'id' => $item->id,
           'first_name' => $item->first_name,

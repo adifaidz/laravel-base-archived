@@ -7,7 +7,7 @@ use {{rootnamespace}}\Permission;
 
 class PermissionTransformer extends Transformer
 {
-    public function transform($item){
+    public function transform(Permission $item){
         return [
           'id' => $item->id,
 					'name' => $item->name,
