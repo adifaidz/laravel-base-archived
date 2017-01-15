@@ -1,5 +1,5 @@
 <?php
 
 return array(
-	'bootstrap-items' => 'layouts.menu-items'
+	'bootstrap-items' => 'base::layouts.menu-items'
 );

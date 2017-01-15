@@ -34,5 +34,8 @@ return [
         'web' => null,
       ]
   ],
+  'dev_env' => 'local',
+
+  'prod_env' => 'production'
 
 ];
