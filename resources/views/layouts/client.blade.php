@@ -167,8 +167,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 2.2.0 -->
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('body')
 </body>

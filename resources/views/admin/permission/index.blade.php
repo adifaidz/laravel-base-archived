@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('base::layouts.admin')
 
 @section('title')
   Permission List

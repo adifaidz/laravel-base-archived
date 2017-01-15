@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('base::layouts.client')
 
 @section('content')
 <div class="container">

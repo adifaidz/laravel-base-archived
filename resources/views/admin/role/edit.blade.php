@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('base::layouts.admin')
 
 @section('title')
   Edit Role
@@ -17,7 +17,7 @@
     <div class="box-header with-border">
         <h3 class="box-title">Edit Role</h3></div>
     <div class="box-body">
-      @include('admin.role.partial.form', ['route'=> route('admin.role.update',['id'=> $role->id]), 'method' => 'put'])
+      @include('base::admin.role.partial.form', ['route'=> route('admin.role.update',['id'=> $role->id]), 'method' => 'put'])
     </div>
     <div class="box-footer"></div>
   </div>

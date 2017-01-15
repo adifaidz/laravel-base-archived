@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('base::layouts.auth')
 
 @section('head')
   <style>

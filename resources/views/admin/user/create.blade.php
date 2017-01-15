@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('base::layouts.admin')
 
 @section('title')
   Create User
@@ -17,7 +17,7 @@
     <div class="box-header with-border">
         <h3 class="box-title">Create User</h3></div>
     <div class="box-body">
-      @include('admin.user.partial.form', ['route'=> route('admin.user.store'), 'method' => 'post'])
+      @include('base::admin.user.partial.form', ['route'=> route('admin.user.store'), 'method' => 'post'])
     </div>
     <div class="box-footer"></div>
 </div>

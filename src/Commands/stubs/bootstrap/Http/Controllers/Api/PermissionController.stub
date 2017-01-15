@@ -1,0 +1,26 @@
+<?php
+
+namespace {{rootnamespace}}\Http\Controllers\Api;
+
+use Illuminate\Http\Request;
+;
+use {{rootnamespace}}\Permission;
+use {{rootnamespace}}\Transformers\PermissionTransformer;
+use {{rootnamespace}}\Paginators\PermissionPaginator;
+
+class PermissionController extends ApiController
+{
+    function __construct(PermissionTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    public function permission(Request $request)
+    {
+        $paginator = new PermissionPaginator($this->transformer);
+
+        $json = $paginator->getJson();
+
+        return response()->json($json);
+    }
+}

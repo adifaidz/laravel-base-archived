@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('base::layouts.admin')
 
 @section('title')
   Edit Permission
@@ -17,7 +17,7 @@
     <div class="box-header with-border">
         <h3 class="box-title">Edit Permission</h3></div>
     <div class="box-body">
-      @include('admin.permission.partial.form', ['route'=> route('admin.permission.update',['id'=> $permission->id]), 'method' => 'put'])
+      @include('base::admin.permission.partial.form', ['route'=> route('admin.permission.update',['id'=> $permission->id]), 'method' => 'put'])
     </div>
     <div class="box-footer"></div>
   </div>
