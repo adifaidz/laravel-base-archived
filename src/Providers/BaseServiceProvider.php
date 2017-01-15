@@ -9,6 +9,7 @@ class BaseServiceProvider extends ServiceProvider
 {
     protected $providers = [
       \Laratrust\LaratrustServiceProvider::class,
+      ComposerServiceProvider::class,
       \AdiFaidz\Clean\Providers\CleanServiceProvider::class,
       \Lavary\Menu\ServiceProvider::class,
     ];
@@ -52,7 +53,7 @@ class BaseServiceProvider extends ServiceProvider
      * [loadViews description]
      */
     public function loadViews(){
-        $this->loadViewsFrom(__DIR__.'/../../resources/assets/views', 'base');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'base');
     }
 
     /**
