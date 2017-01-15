@@ -1,6 +1,6 @@
 <?php
 
-namespace Chart\Providers;
+namespace AdiFaidz\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
