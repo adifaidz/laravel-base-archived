@@ -108,7 +108,7 @@
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      @include('layouts.menu')
+      @include('base::layouts.menu')
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
