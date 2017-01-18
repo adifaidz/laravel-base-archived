@@ -1,25 +1,19 @@
 <?php
 return [
   'name' => 'CHART',
-
   'logo' => '<i class="fa fa-bell-o" aria-hidden="true"></i>',
-
   'users' => [
-    'model' => 'Chart\User'
+    'model' => 'AdiFaidz\Base\User'
   ],
-
   'roles' => [
-    'model' => 'Chart\Role'
+    'model' => 'AdiFaidz\Base\Role'
   ],
-
   'permissions' => [
-    'model' => 'Chart\Permission'
+    'model' => 'AdiFaidz\Base\Permission'
   ],
-
   'userprofiles' => [
-    'model' => 'Chart\UserProfile'
+    'model' => 'AdiFaidz\Base\UserProfile'
   ],
-
   'stub' => [
     'index' => null,
     'show' => null,
@@ -27,15 +21,7 @@ return [
     'edit' => null,
     'form' => null,
   ],
-
-  'route' => [
-    'web' => [
-        'admin' => null,
-        'web' => null,
-      ]
-  ],
   'dev_env' => 'local',
-
-  'prod_env' => 'production'
+  'prod_env' => 'production',
 
 ];
