@@ -2,6 +2,8 @@
 
 namespace AdiFaidz\Base;
 
+use Illuminate\Support\Facades\Route;
+
 class Base
 {
     public static function routes($callback = null, array $options = [])
