@@ -11,18 +11,24 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-      "santigarcor/laratrust": "3.0.*",
-      "lavary/laravel-menu": "^1.6"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "santigarcor/laratrust": "^3.0",
+        "lavary/laravel-menu": "^1.6",
+        "rap2hpoutre/laravel-log-viewer": "^0.8.0",
+        "adifaidz/clean": "dev-master"
     },
     "require-dev": {
-      "barryvdh/laravel-debugbar": "^2.2",
-      "rap2hpoutre/laravel-log-viewer": "^0.7.0",
-      "adifaidz/clean": "dev-master",
-      "phpunit/phpunit": "~5.0"
+        "phpunit/phpunit": "~5.0",
+        "orchestra/testbench": "~3.0"
     },
     "autoload": {
         "psr-4": {
             "AdiFaidz\\Base\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AdiFaidz\\Base\\Tests\\": "tests/"
         }
     }
 }
