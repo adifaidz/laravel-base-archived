@@ -1,0 +1,11 @@
+<?php
+
+namespace {{rootnamespace}};
+
+use Laratrust\LaratrustPermission;
+use AdiFaidz\Base\Traits\TableInfoTrait;
+
+class Permission extends LaratrustPermission
+{
+    use TableInfoTrait;
+}
