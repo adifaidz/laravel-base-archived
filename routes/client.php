@@ -1,38 +1,38 @@
 <?php
 
-Route::post('logout', [
+$this->router->post('logout', [
   'as' => 'client.logout',
   'uses'=> 'Client\Auth\LoginController@logout',
 ]);
 
-Route::get('dashboard', [
+$this->router->get('dashboard', [
   'as' => 'client.home',
   'uses' => 'Client\HomeController@index',
 ]);
 
-//Routes for Chart\UserProfile
+//Routes for AdiFaidz\Base\UserProfile
 
-Route::bind('userprofile', function ($value){
+$this->router->bind('userprofile', function ($value){
   try {
-    return \Chart\UserProfile::findOrFail($value);
+    return \AdiFaidz\Base\UserProfile::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
 }) ;
 
-Route::group(['prefix' => 'userprofile'], function () {
+$this->router->group(['prefix' => 'userprofile'], function () {
 
-  Route::get('/edit/{userprofile}', [
+  $this->router->get('/edit/{userprofile}', [
     'as' => 'client.userprofile.edit',
     'uses' => 'Client\UserProfileController@edit',
   ]);
 
-  Route::put('{userprofile}', [
+  $this->router->put('{userprofile}', [
     'as' => 'client.userprofile.update',
     'uses' => 'Client\UserProfileController@update',
   ]);
 
-  Route::get('/show/{userprofile}', [
+  $this->router->get('/show/{userprofile}', [
     'as' => 'client.userprofile.show',
     'uses' => 'Client\UserProfileController@show',
   ]);

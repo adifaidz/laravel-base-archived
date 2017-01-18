@@ -1,28 +1,28 @@
 <?php
-//Routes for Chart\Role
+//Routes for AdiFaidz\Base\Role
 
-Route::get('/role', [
+$this->router->get('/role', [
   'as' => 'api.role',
   'uses' => 'Api\RoleController@role',
 ]);
 
-//Routes for Chart\Permission
+//Routes for AdiFaidz\Base\Permission
 
-Route::get('/permission', [
+$this->router->get('/permission', [
   'as' => 'api.permission',
   'uses' => 'Api\PermissionController@permission',
 ]);
 
-//Routes for Chart\User
+//Routes for AdiFaidz\Base\User
 
-Route::get('/user', [
+$this->router->get('/user', [
   'as' => 'api.user',
   'uses' => 'Api\UserController@user',
 ]);
 
-//Routes for Chart\UserProfile
+//Routes for AdiFaidz\Base\UserProfile
 
-Route::get('/userprofile', [
+$this->router->get('/userprofile', [
   'as' => 'api.userprofile',
   'uses' => 'Api\UserProfileController@userprofile',
 ]);

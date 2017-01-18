@@ -1,41 +1,33 @@
 <?php
-Route::get('admin/login', [
+$this->router->get('admin/login', [
   'as' => 'admin.login',
   'uses' => 'Admin\Auth\LoginController@showLoginForm',
 ]);
 
-Route::post('admin/login', [
+$this->router->post('admin/login', [
   'uses'=> 'Admin\Auth\LoginController@login',
 ]);
 
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
-  File::requireOnce( __DIR__.'/web/admin.php');
-});
-
-Route::get('/', [
+$this->router->get('/', [
   'as' => 'client.login',
   'uses' => 'Client\Auth\LoginController@showLoginForm',
 ]);
 
-Route::post('login', [
+$this->router->post('login', [
   'uses'=> 'Client\Auth\LoginController@login',
 ]);
 
-Route::group(['middleware' => 'client'], function () {
-  File::requireOnce( __DIR__.'/web/client.php');
-});
-
-Route::get('password/reset', [
+$this->router->get('password/reset', [
   'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm',
 ]);
-Route::post('password/reset', [
+$this->router->post('password/reset', [
   'uses' => 'Auth\ResetPasswordController@reset',
 ]);
 
-Route::get('password/reset/{token}', [
+$this->router->get('password/reset/{token}', [
   'uses' => 'Auth\ResetPasswordController@showResetForm',
 ]);
 
-Route::post('password/email', [
+$this->router->post('password/email', [
   'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
 ]);
