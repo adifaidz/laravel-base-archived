@@ -16,7 +16,6 @@ class BaseServiceProvider extends ServiceProvider
 
     protected $devProviders = [
       \Barryvdh\Debugbar\ServiceProvider::class,
-      \Laralib\L5scaffold\GeneratorsServiceProvider::class,
       \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ];
 
