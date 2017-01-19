@@ -77,7 +77,7 @@ class RouteRegistrar
      */
     public function forApi(){
       $this->router->group(['middleware' => ['api'], 'prefix' => 'api'], function(){
-        require_once __DIR__ . '/../routes/auth.php';
+        require_once __DIR__ . '/../routes/api.php';
       });
     }
 }
