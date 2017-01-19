@@ -8,8 +8,8 @@ class Base
 {
     public static function routes($callback = null, array $options = [])
     {
-        $callback = $callback ?: function ($router) {
-            $router->all();
+        $callback = $callback ?: function ($registrar) {
+            $registrar->all();
         };
         $options = array_merge([
             'namespace' => '\AdiFaidz\Base\Http\Controllers',
