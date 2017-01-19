@@ -54,7 +54,7 @@ class RouteRegistrar
      * @return void
      */
     public function forAdmins(){
-      $this->router->group(['middleware' => ['web'], 'prefix' => 'admin'], function(){
+      $this->router->group(['middleware' => ['web','admin'], 'prefix' => 'admin'], function(){
         require_once __DIR__ . '/../routes/admin.php';
       });
     }
@@ -65,7 +65,7 @@ class RouteRegistrar
      * @return void
      */
     public function forClients(){
-      $this->router->group(['middleware' => ['web']], function(){
+      $this->router->group(['middleware' => ['web', 'client']], function(){
         require_once __DIR__ . '/../routes/client.php';
       });
     }
