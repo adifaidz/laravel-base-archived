@@ -15,12 +15,12 @@ class StartupSeeder extends Seeder
         $this->command->info('Truncating User, Role and Permission tables');
         $this->truncateLaratrustTables();
 
-        $config = config('laratrust_seeder.role_structure');
-        $mapPermission = collect(config('laratrust_seeder.permissions_map'));
+        $config = config('base_seeder.role_structure');
+        $mapPermission = collect(config('base_seeder.permissions_map'));
 
         foreach ($config as $key => $modules) {
             // Create a new role
-            $role = config('chart.roles.model')::create([
+            $role = config('base.roles.model')::create([
                 'name' => $key,
                 'display_name' => ucfirst($key),
                 'description' => ucfirst($key)
@@ -35,7 +35,7 @@ class StartupSeeder extends Seeder
                 foreach ($permissions as $p => $perm) {
                     $permissionValue = $mapPermission->get($perm);
 
-                    $permission = config('chart.permissions.model')::firstOrCreate([
+                    $permission = config('base.permissions.model')::firstOrCreate([
                         'name' => $module . '-' . $permissionValue,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
@@ -53,7 +53,7 @@ class StartupSeeder extends Seeder
 
             $this->command->info("Creating '{$key}' user");
             // Create default user for each role
-            $user = config('chart.users.model')::create([
+            $user = config('base.users.model')::create([
                 'name' => ucfirst($key),
                 'email' => $key.'@app.com',
                 'password' => bcrypt('password'),
@@ -62,7 +62,7 @@ class StartupSeeder extends Seeder
             $user->attachRole($role);
 
             $this->command->info("Creating '{$key}' user profile");
-            $userprofile = config('chart.userprofiles.model')::create([
+            $userprofile = config('base.userprofiles.model')::create([
               'user_id' => $user->id,
             ]);
         }
@@ -77,10 +77,10 @@ class StartupSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('permission_role')->truncate();
         DB::table('role_user')->truncate();
-        config('chart.users.model')::truncate();
-        config('chart.roles.model')::truncate();
-        config('chart.permissions.model')::truncate();
-        config('chart.userprofiles.model')::truncate();
+        config('base.users.model')::truncate();
+        config('base.roles.model')::truncate();
+        config('base.permissions.model')::truncate();
+        config('base.userprofiles.model')::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
