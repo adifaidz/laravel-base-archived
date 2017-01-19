@@ -24,6 +24,12 @@ class BaseServiceProvider extends ServiceProvider
       'Menu' => \Lavary\Menu\Facade::class,
     ];
 
+    protected $middleware = [
+      'role' => \Laratrust\Middleware\LaratrustRole::class,
+      'permission' => \Laratrust\Middleware\LaratrustPermission::class,
+      'ability' => \Laratrust\Middleware\LaratrustAbility::class,
+    ];
+
     /**
      * Bootstrap the application services.
      *
@@ -76,7 +82,7 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function publishConfigs(){
         $this->publishes([
-          __DIR__.'/../../config/chart.php' => config_path('chart.php'),
+          __DIR__.'/../../config/base.php' => config_path('base.php'),
         ]);
     }
 
@@ -111,6 +117,8 @@ class BaseServiceProvider extends ServiceProvider
         $this->registerDevProviders();
 
         $this->registerFacades();
+
+        $this->registerConfigs();
     }
 
     /**
@@ -126,7 +134,7 @@ class BaseServiceProvider extends ServiceProvider
      * [registerDevProviders description]
      */
     public function registerDevProviders(){
-        if ($this->app->environment(config('chart.dev_env'))) {
+        if ($this->app->environment(config('base.dev_env'))) {
             foreach ($this->devProviders as $provider) {
                 $this->instances[] = $this->app->register($provider);
             }
@@ -141,6 +149,25 @@ class BaseServiceProvider extends ServiceProvider
         foreach ($this->facades as $alias => $facade) {
             $loader->alias($alias, $facade);
         }
+    }
+
+    /**
+     * [registerConfigs description]
+     */
+    public function registerConfigs(){
+        config([
+          'laratrust.role' => config('basetrust.role.model'),
+          'laratrust.roles_table' => config('basetrust.roles_table.table'),
+          'laratrust.permission' => config('basetrust.permission.model'),
+          'laratrust.permissions_table' => config('basetrust.permissions_table.table'),
+          'laratrust.permission_role_table' => config('basetrust.permission_role_table'),
+          'laratrust.role_user_table' => config('basetrust.role_user_table'),
+          'laratrust.user_foreign_key' => config('basetrust.user_foreign_key'),
+          'laratrust.role_foreign_key' => config('basetrust.role_foreign_key'),
+          'laratrust.permission_foreign_key' => config('basetrust.permission_foreign_key'),
+          'laratrust.middleware_handling' => config('basetrust.middleware_handling'),
+          'laratrust.middleware_params' => config('basetrust.middleware_params'),
+        ]);
     }
 
     /**
