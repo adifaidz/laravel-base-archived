@@ -1,12 +1,12 @@
 <?php
 
-namespace Chart\Http\Controllers\Api;
+namespace AdiFaidz\Base\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-use Chart\User;
-use Chart\Transformers\UserTransformer;
-use Chart\Paginators\UserPaginator;
+use AdiFaidz\Base\User;
+use AdiFaidz\Base\Transformers\UserTransformer;
+use AdiFaidz\Base\Paginators\UserPaginator;
 
 class UserController extends ApiController
 {

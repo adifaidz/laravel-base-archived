@@ -1,12 +1,12 @@
 <?php
 
-namespace Chart\Http\Controllers\Api;
+namespace AdiFaidz\Base\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-use Chart\Role;
-use Chart\Transformers\RoleTransformer;
-use Chart\Paginators\RolePaginator;
+use AdiFaidz\Base\Role;
+use AdiFaidz\Base\Transformers\RoleTransformer;
+use AdiFaidz\Base\Paginators\RolePaginator;
 
 class RoleController extends ApiController
 {
