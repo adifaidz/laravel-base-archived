@@ -37,7 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:web_admin', ['except' => 'logout']);
+        $this->middleware('base_guest:web_admin', ['except' => 'logout']);
 
         $this->redirectTo = route('admin.home');
     }
