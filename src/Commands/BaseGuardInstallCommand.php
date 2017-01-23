@@ -86,7 +86,7 @@ class BaseGuardInstallCommand extends Command
     protected function compileContent($path, $setting) //It should be compile method instead
     {
         $originalContent = $this->filesystem->get($path);
-        $content = $this->replaceNames($this->filesystem->get($setting['stub']));
+        $content = $this->filesystem->get($setting['stub']);
 
         if( ! str_contains(trim($originalContent), trim($content))) {
             if ($setting['prefix']) {
