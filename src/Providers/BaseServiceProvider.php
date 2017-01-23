@@ -25,9 +25,22 @@ class BaseServiceProvider extends ServiceProvider
     ];
 
     protected $middleware = [
+      'base_guest' => \AdiFaidz\Base\Http\Middleware\RedirectIfAuthenticated::class,
       'role' => \Laratrust\Middleware\LaratrustRole::class,
       'permission' => \Laratrust\Middleware\LaratrustPermission::class,
       'ability' => \Laratrust\Middleware\LaratrustAbility::class,
+    ];
+
+    protected $command = [
+        Commands\BaseGuardInstallCommand::class,
+        Commands\BaseMakeCommand::class,
+        Commands\ModelMakeCommand::class,
+        Commands\ControllerMakeCommand::class,
+        Commands\ApiControllerMakeCommand::class,
+        Commands\ViewMakeCommand::class,
+        Commands\TransformerMakeCommand::class,
+        Commands\PaginatorMakeCommand::class,
+        Commands\ResourceMakeCommand::class,
     ];
 
     /**
@@ -65,16 +78,7 @@ class BaseServiceProvider extends ServiceProvider
      * [registerCommands description]
      */
     public function registerCommands(){
-        $this->commands([
-            Commands\BaseMakeCommand::class,
-            Commands\ModelMakeCommand::class,
-            Commands\ControllerMakeCommand::class,
-            Commands\ApiControllerMakeCommand::class,
-            Commands\ViewMakeCommand::class,
-            Commands\TransformerMakeCommand::class,
-            Commands\PaginatorMakeCommand::class,
-            Commands\ResourceMakeCommand::class,
-        ]);
+        $this->commands($this->command);
     }
 
     /**
