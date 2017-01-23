@@ -70,7 +70,9 @@ class ViewMakeCommand extends GeneratorCommand
         unset($args['stub']);
       }
 
-      $this->appendAppJs($name, $args);
+      //Disable appending to app.js for now
+
+      //$this->appendAppJs($name, $args);
       $this->info("{$this->type} created successfully.");
     }
 

@@ -45,12 +45,12 @@ class BaseMakeCommand extends GeneratorCommand
     public function buildClass(Array $args)
     {
       $stub = $args['stub'];
-      $this->replaceNamespace($stub);
+      $this->replaceRootNamespace($stub);
 
       return $stub;
     }
 
-    public function replaceNamespace(&$stub)
+    public function replaceRootNamespace(&$stub)
     {
       $namespace = rtrim($this->laravel->getNamespace(), "\\");
       $stub = str_replace('{{rootnamespace}}', $namespace, $stub);

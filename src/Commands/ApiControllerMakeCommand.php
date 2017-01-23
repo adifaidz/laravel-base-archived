@@ -91,21 +91,21 @@ class ApiControllerMakeCommand extends GeneratorCommand
       return $stub;
     }
 
-    protected function replaceModel(&$stub, $model)
+    protected function replaceModel(&$stub, $modelNamespace)
     {
-        $class = substr($model, strrpos($model, '\\') + 1);
+        $modelClass = substr($modelNamespace, strrpos($modelNamespace, '\\') + 1);
 
-        $name  = strtolower($class);
+        $modelName  = strtolower($modelClass);
 
         $viewpath  = str_replace('\\', '.', strtolower($this->option('model')));
 
-        $stub = str_replace('{{modelclass}}', "$class", $stub);
+        $stub = str_replace('{{modelclass}}', "$modelClass", $stub);
 
-        $stub = str_replace('{{modelname}}', "$name", $stub);
+        $stub = str_replace('{{modelname}}', "$modelName", $stub);
 
         $stub = str_replace('{{viewpath}}', "$viewpath", $stub);
 
-        $stub = str_replace('{{modelnamespace}}', "$model", $stub);
+        $stub = str_replace('{{modelnamespace}}', "$modelNamespace", $stub);
         return $this;
     }
 
