@@ -18,7 +18,7 @@ class BaseGuardInstallCommand extends Command
     {
         parent::__construct();
 
-        $this->filesystemystem = $filesystem;
+        $this->filesystem = $filesystem;
     }
 
     public function handle()
