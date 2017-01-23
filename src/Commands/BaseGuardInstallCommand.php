@@ -92,9 +92,9 @@ class BaseGuardInstallCommand extends Command
 
         if( ! str_contains(trim($originalContent), trim($content))) {
             if ($setting['prefix']) {
-                $stub = $content . $setting['search'];
+                $stub = $content . PHP_EOL . $setting['search'];
             } else {
-                $stub = $setting['search'] . $content;
+                $stub = $setting['search'] . PHP_EOL . $content;
             }
             $originalContent = str_replace($setting['search'], $stub, $originalContent);
         }
