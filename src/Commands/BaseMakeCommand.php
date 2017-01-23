@@ -7,9 +7,9 @@ use Illuminate\Support\Str;
 
 class BaseMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'base:install';
+    protected $signature = 'base:make';
 
-    protected $description = 'Create new CRUD ready views and vue components for a model class';
+    protected $description = 'Create bootstrap components for base';
 
     protected $type = 'Base';
 

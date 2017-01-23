@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-class BaseGuardInstallCommand extends Command
+class BaseInstallCommand extends Command
 {
-    protected $signature = 'base:settings-install';
+    protected $signature = 'base:install';
 
-    protected $description = 'Add appropriate settings for base to work';
+    protected $description = 'Installs base package';
 
     protected $type = 'Settings';
 

@@ -32,7 +32,7 @@ class BaseServiceProvider extends ServiceProvider
     ];
 
     protected $command = [
-        Commands\BaseGuardInstallCommand::class,
+        Commands\BaseInstallCommand::class,
         Commands\BaseMakeCommand::class,
         Commands\ModelMakeCommand::class,
         Commands\ControllerMakeCommand::class,
