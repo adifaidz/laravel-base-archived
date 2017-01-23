@@ -1,0 +1,8 @@
+        'web_client' => [
+            'driver' => 'session',
+            'provider' => 'base_users',
+        ],
+        'web_admin' => [
+            'driver' => 'session',
+            'provider' => 'base_users',
+        ],

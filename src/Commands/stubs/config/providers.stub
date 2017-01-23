@@ -1,0 +1,4 @@
+        'base_users' => [
+            'driver' => 'eloquent',
+            'model' => AdiFaidz\Base\User::class,
+        ],

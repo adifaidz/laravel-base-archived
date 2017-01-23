@@ -1,0 +1,8 @@
+        'admin' => [
+            \AdiFaidz\Base\Http\Middleware\AdminMenu::class,
+            'auth:web_admin',
+        ],
+        'client' => [
+            \AdiFaidz\Base\Http\Middleware\ClientMenu::class,
+            'auth:web_client',
+        ],
