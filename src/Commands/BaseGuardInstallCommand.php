@@ -14,6 +14,8 @@ class BaseGuardInstallCommand extends Command
 
     protected $type = 'Settings';
 
+    protected $forced = true;
+
     public function __construct(Filesystem $filesystem)
     {
         parent::__construct();
@@ -74,7 +76,7 @@ class BaseGuardInstallCommand extends Command
 
     protected function putContent($path, $content)
     {
-        if($this->alreadyExists($path)) {
+        if($this->alreadyExists($path) && !$this->forced) {
             $this->error($path . ' already exists!');
             return false;
         }
