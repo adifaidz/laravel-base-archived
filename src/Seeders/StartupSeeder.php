@@ -21,7 +21,7 @@ class StartupSeeder extends Seeder
 
         foreach ($config as $key => $modules) {
             // Create a new role
-            $role = config('base.roles.model')::create([
+            $role = config('basetrust.role')::create([
                 'name' => $key,
                 'display_name' => ucfirst($key),
                 'description' => ucfirst($key)
@@ -36,7 +36,7 @@ class StartupSeeder extends Seeder
                 foreach ($permissions as $p => $perm) {
                     $permissionValue = $mapPermission->get($perm);
 
-                    $permission = config('base.permissions.model')::firstOrCreate([
+                    $permission = config('basetrust.permission')::firstOrCreate([
                         'name' => $module . '-' . $permissionValue,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
@@ -54,7 +54,7 @@ class StartupSeeder extends Seeder
 
             $this->command->info("Creating '{$key}' user");
             // Create default user for each role
-            $user = config('base.users.model')::create([
+            $user = config('basetrust.user')::create([
                 'name' => ucfirst($key),
                 'email' => $key.'@app.com',
                 'password' => bcrypt('password'),
@@ -63,7 +63,7 @@ class StartupSeeder extends Seeder
             $user->attachRole($role);
 
             $this->command->info("Creating '{$key}' user profile");
-            $userprofile = config('base.userprofiles.model')::create([
+            $userprofile = config('basetrust.userprofile')::create([
               'user_id' => $user->id,
             ]);
         }
