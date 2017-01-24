@@ -57,6 +57,7 @@ class BaseServiceProvider extends ServiceProvider
             $this->publishConfigs();
             $this->publishViews();
             $this->publishVueComponents();
+            $this->publishPublic();
         }
     }
 
@@ -87,7 +88,7 @@ class BaseServiceProvider extends ServiceProvider
     public function publishConfigs(){
         $this->publishes([
           __DIR__.'/../../config/base.php' => config_path('base.php'),
-        ]);
+        ], 'config');
     }
 
     /**
@@ -96,7 +97,7 @@ class BaseServiceProvider extends ServiceProvider
     public function publishViews(){
         $this->publishes([
           __DIR__.'/../../resources/views' => resource_path('views/vendor/base'),
-        ], 'base-views');
+        ], 'views');
     }
 
     /**
@@ -105,7 +106,16 @@ class BaseServiceProvider extends ServiceProvider
     public function publishVueComponents(){
         $this->publishes([
           __DIR__.'/../../resources/assets/js/components/base' => resource_path('assets/js/components/base'),
-        ], 'base-components');
+        ], 'vue');
+    }
+
+    /**
+     * [publishPublic description]
+     */
+    public function publishPublic(){
+        $this->publishes([
+          __DIR__.'/../../public' => public_path('vendor/base'),
+        ], 'public');
     }
 
     /**
