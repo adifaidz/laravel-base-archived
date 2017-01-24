@@ -12,7 +12,7 @@ class BaseUserProfile extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('basetrust.userprofiles_table');
+        $this->table = config('basetrust.userprofiles_table');
     }
 
     protected $dates = [
