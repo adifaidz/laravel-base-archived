@@ -1,4 +1,5 @@
 <?php
+namespace AdiFaidz\Base\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
