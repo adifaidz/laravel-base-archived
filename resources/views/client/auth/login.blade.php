@@ -4,14 +4,14 @@
   <div class="login-box">
     <div class="login-box-body dark">
       <div class="login-logo">
-        <a href="../../index2.html"><b>{{config('chart.name')}}</b> {!!config('chart.logo')!!}</a>
+        <a href="#"><b>{{config('chart.name')}}</b> {!!config('chart.logo')!!}</a>
       </div>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="{{ url('/login') }}" method="post">
+      <form action="{{ route('client.login') }}" method="post">
         <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
           <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required autofocus>
           <span class="fa fa-envelope form-control-feedback"></span>

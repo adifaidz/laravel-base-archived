@@ -4,7 +4,7 @@
 <div class="login-box">
   <div class="login-box-body dark">
     <div class="login-logo">
-      <a href="../../index2.html"><b>{{config('chart.name')}}</b> {!!config('chart.logo')!!}</a>
+      <a href="#"><b>{{config('chart.name')}}</b> {!!config('chart.logo')!!}</a>
     </div>
   </div>
   <!-- /.login-logo -->
