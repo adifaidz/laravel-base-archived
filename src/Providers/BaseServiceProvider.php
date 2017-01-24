@@ -88,6 +88,11 @@ class BaseServiceProvider extends ServiceProvider
     public function publishConfigs(){
         $this->publishes([
           __DIR__.'/../../config/base.php' => config_path('base.php'),
+          __DIR__.'/../../config/basetrust.php' => config_path('basetrust.php'),
+          __DIR__.'/../../config/base_seeder.php' => config_path('base_seeder.php'),
+          __DIR__.'/../../config/debugbar.php' => config_path('debugbar.php'),
+          __DIR__.'/../../config/laravel-menu/settings.php' => config_path('laravel-menu/settings.php'),
+          __DIR__.'/../../config/laravel-menu/views.php' => config_path('laravel-menu/views.php'),
         ], 'config');
     }
 
