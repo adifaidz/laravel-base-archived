@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{config('chart.name')}} | @yield('title')</title>
+  <title>{{config('base.name')}} | @yield('title')</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{ asset('vendor/base/css/app.css') }}" />
   <style>
@@ -25,9 +25,9 @@
     <!-- Logo -->
     <a href="{{route('admin.home')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">{!!config('chart.logo')!!}</span>
+      <span class="logo-mini">{!!config('base.logo')!!}</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>{{config('chart.name')}}</b></span>
+      <span class="logo-lg"><b>{{config('base.name')}}</b></span>
     </a>
 
     <!-- Header Navbar -->
