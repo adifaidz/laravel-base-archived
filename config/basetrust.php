@@ -94,7 +94,7 @@ return [
     | database.
     |
     */
-    'userprofiles_table' => 'userprofiles',
+    'userprofiles_table' => 'user_profiles',
 
     /*
     |--------------------------------------------------------------------------
