@@ -76,12 +76,12 @@ class StartupSeeder extends Seeder
     public function truncateLaratrustTables()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        DB::table('permission_role')->truncate();
-        DB::table('role_user')->truncate();
-        config('base.users.model')::truncate();
-        config('base.roles.model')::truncate();
-        config('base.permissions.model')::truncate();
-        config('base.userprofiles.model')::truncate();
+        DB::table(config('basetrust.permission_role_table'))->truncate();
+        DB::table(config('basetrust.role_user_table'))->truncate();
+        config('basetrust.user')::truncate();
+        config('basetrust.role')::truncate();
+        config('basetrust.permission')::truncate();
+        config('basetrust.userprofile')::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
