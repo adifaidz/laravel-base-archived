@@ -37,6 +37,7 @@ class BaseInstallCommand extends Command
       }
 
       $this->info("{$this->type} installed successfully.");
+      $this->call('clean:all');
     }
 
     protected function getSettings(){
@@ -80,12 +81,13 @@ class BaseInstallCommand extends Command
             $this->error($path . ' already exists!');
             return false;
         }
+
         $this->makeDirectory($path);
         $this->filesystem->put($path, $content);
         return true;
     }
 
-    protected function compileContent($path, $setting) //It should be compile method instead
+    protected function compileContent($path, $setting)
     {
         $originalContent = $this->filesystem->get($path);
         $content = $this->filesystem->get($setting['stub']);
