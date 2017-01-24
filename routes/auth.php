@@ -8,7 +8,7 @@ $this->router->post('admin/login', [
   'uses'=> 'Admin\Auth\LoginController@login',
 ]);
 
-$this->router->get('/', [
+$this->router->get('login', [
   'as' => 'client.login',
   'uses' => 'Client\Auth\LoginController@showLoginForm',
 ]);
