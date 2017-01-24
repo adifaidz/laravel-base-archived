@@ -19,6 +19,33 @@ class BaseServiceProvider extends ServiceProvider
       \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ];
 
+    protected $configs = [
+      'base' => [
+        'src' => __DIR__.'/../../config/base.php',
+        'dest' => 'base.php',
+      ],
+      'basetrust' => [
+        'src' => __DIR__.'/../../config/basetrust.php',
+        'dest' => 'basetrust.php',
+      ],
+      'base_seeder' => [
+        'src' => __DIR__.'/../../config/base_seeder.php',
+        'dest' => 'base_seeder.php',
+      ],
+      'debugbar' => [
+        'src' => __DIR__.'/../../config/debugbar.php',
+        'dest' => 'debugbar.php',
+      ],
+      'laravel-menu.settings' => [
+        'src' => __DIR__.'/../../config/laravel-menu/settings.php',
+        'dest' => 'laravel-menu/settings.php',
+      ],
+      'laravel-menu.views' => [
+        'src' => __DIR__.'/../../config/laravel-menu/views.php',
+        'dest' => 'laravel-menu/views.php',
+      ],
+    ];
+
     protected $facades = [
       'Laratrust' => \Laratrust\LaratrustFacade::class,
       'Menu' => \Lavary\Menu\Facade::class,
@@ -51,6 +78,7 @@ class BaseServiceProvider extends ServiceProvider
     public function boot(){
         $this->loadMigrations();
         $this->loadViews();
+        $this->mergeConfigs();
 
         if($this->app->runningInConsole()){
             $this->registerCommands();
@@ -76,6 +104,16 @@ class BaseServiceProvider extends ServiceProvider
     }
 
     /**
+     * [mergeConfigs description]
+     */
+    public function mergeConfigs(){
+
+        foreach ($this->configs as $key => $path) {
+            $this->mergeConfigFrom($path['src'], $key);
+        }
+    }
+
+    /**
      * [registerCommands description]
      */
     public function registerCommands(){
@@ -86,14 +124,15 @@ class BaseServiceProvider extends ServiceProvider
      * [publishConfigs description]
      */
     public function publishConfigs(){
-        $this->publishes([
-          __DIR__.'/../../config/base.php' => config_path('base.php'),
-          __DIR__.'/../../config/basetrust.php' => config_path('basetrust.php'),
-          __DIR__.'/../../config/base_seeder.php' => config_path('base_seeder.php'),
-          __DIR__.'/../../config/debugbar.php' => config_path('debugbar.php'),
-          __DIR__.'/../../config/laravel-menu/settings.php' => config_path('laravel-menu/settings.php'),
-          __DIR__.'/../../config/laravel-menu/views.php' => config_path('laravel-menu/views.php'),
-        ], 'config');
+        $configs = [];
+
+        foreach ($this->configs as $path) {
+          $src  = $path['src'];
+          $dest = $path['dest'];
+          $configs[$src] = config_path($dest);
+        }
+
+        $this->publishes($configs, 'config');
     }
 
     /**

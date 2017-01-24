@@ -16,7 +16,7 @@ class BaseUser extends Authenticatable
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('basetrust.users_table');
+        $this->table = config('basetrust.users_table');
     }
 
     /**
