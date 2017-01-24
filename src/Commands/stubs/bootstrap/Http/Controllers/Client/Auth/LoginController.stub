@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
 use {{rootnamespace}}\Http\Controllers\Controller;
-use AdiFaidz\Base\LogoutGuardTrait;
+use AdiFaidz\Base\Traits\LogoutGuardTrait;
 
 class LoginController extends Controller
 {
