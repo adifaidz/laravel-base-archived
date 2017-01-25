@@ -6,10 +6,11 @@ use AdiFaidz\Base\Transformers\Transformer;
 use AdiFaidz\Base\Paginators\Paginator;
 
 class UserProfilePaginator extends Paginator {
-  protected $model = 'AdiFaidz\Base\BaseUserProfile';
+  protected $model;
 
   public function __construct(Transformer $transformer){
     $this->transformer = $transformer;
+    $this->model = config('basetrust.userprofile');
   }
 
   public function filterData($data){
