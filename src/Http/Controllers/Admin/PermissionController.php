@@ -7,7 +7,7 @@ use Validator;
 
 use AdiFaidz\Base\Http\Controllers\Controller;
 use AdiFaidz\Base\Transformers\PermissionTransformer;
-use AdiFaidz\Base\Permission;
+use AdiFaidz\Base\BasePermission;
 
 class PermissionController extends Controller
 {

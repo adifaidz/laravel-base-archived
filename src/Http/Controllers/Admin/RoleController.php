@@ -7,8 +7,8 @@ use Validator;
 
 use AdiFaidz\Base\Http\Controllers\Controller;
 use AdiFaidz\Base\Transformers\RoleTransformer;
-use AdiFaidz\Base\Role;
-use AdiFaidz\Base\Permission;
+use AdiFaidz\Base\BaseRole;
+use AdiFaidz\Base\BasePermission;
 
 class RoleController extends Controller
 {

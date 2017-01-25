@@ -3,7 +3,7 @@
 namespace AdiFaidz\Base\Transformers;
 
 use AdiFaidz\Base\Transformers\Transformer;
-use AdiFaidz\Base\Permission;
+use AdiFaidz\Base\BasePermission;
 
 class PermissionTransformer extends Transformer
 {

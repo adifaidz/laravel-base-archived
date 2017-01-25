@@ -9,7 +9,7 @@ use Validator;
 use AdiFaidz\Base\Http\Controllers\Controller;
 use AdiFaidz\Base\Transformers\UserTransformer;
 use AdiFaidz\Base\BaseUser;
-use AdiFaidz\Base\Role;
+use AdiFaidz\Base\BaseRole;
 use AdiFaidz\Base\BaseUserProfile;
 
 class UserController extends Controller
