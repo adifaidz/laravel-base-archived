@@ -21,6 +21,6 @@ class BaseUserProfile extends Model
 
     public function user()
     {
-        return $this->hasOne(config('basetrust.user'));
+        return $this->belongsTo(config('basetrust.user'), config('basetrust.user_foreign_key'));
     }
 }
