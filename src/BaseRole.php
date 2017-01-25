@@ -9,7 +9,9 @@ class BaseRole extends LaratrustRole
 {
     use TableInfoTrait;
 
-    public function __construct(){
-      $this->table = config('basetrust.roles_table');
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = config('basetrust.roles_table');
     }
 }
