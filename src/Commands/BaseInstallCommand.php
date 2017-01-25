@@ -48,12 +48,12 @@ class BaseInstallCommand extends Command
              'search' => "'guards' => [",
              'prefix' => false,
         ],
-        'provider config' => [
-             'path' => '/config/auth.php',
-             'stub' => __DIR__ . '/stubs/config/providers.stub',
-             'search' => "'providers' => [",
-             'prefix' => false,
-        ],
+        // 'provider config' => [
+        //      'path' => '/config/auth.php',
+        //      'stub' => __DIR__ . '/stubs/config/providers.stub',
+        //      'search' => "'providers' => [",
+        //      'prefix' => false,
+        // ],
         'password config' => [
              'path' => '/config/auth.php',
              'stub' => __DIR__ . '/stubs/config/passwords.stub',
