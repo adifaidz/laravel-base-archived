@@ -112,6 +112,11 @@ class PermissionController extends Controller
         return $permission;
     }
 
+    public function getFormReference()
+    {
+      return [];
+    }
+
     public function validator(array $data)
     {
       return Validator::make($data, []);
