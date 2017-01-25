@@ -59,6 +59,6 @@ class LoginController extends Controller
 
     protected function broker()
     {
-        return Password::broker('base_users');
+        return Password::broker('users');
     }
 }
