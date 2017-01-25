@@ -214,10 +214,10 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function registerConfigs(){
         config([
-          'laratrust.role' => config('basetrust.role.model'),
-          'laratrust.roles_table' => config('basetrust.roles_table.table'),
-          'laratrust.permission' => config('basetrust.permission.model'),
-          'laratrust.permissions_table' => config('basetrust.permissions_table.table'),
+          'laratrust.role' => config('basetrust.role'),
+          'laratrust.roles_table' => config('basetrust.roles_table'),
+          'laratrust.permission' => config('basetrust.permission'),
+          'laratrust.permissions_table' => config('basetrust.permissions_table'),
           'laratrust.permission_role_table' => config('basetrust.permission_role_table'),
           'laratrust.role_user_table' => config('basetrust.role_user_table'),
           'laratrust.user_foreign_key' => config('basetrust.user_foreign_key'),
