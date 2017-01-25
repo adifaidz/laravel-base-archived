@@ -3,6 +3,7 @@ namespace AdiFaidz\Base\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 trait LogoutGuardTrait
 {
     /**

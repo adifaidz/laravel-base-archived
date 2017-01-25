@@ -35,6 +35,17 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
   ```
 
++ Change the auth users provider model in config/auth.php to
+
+  ```
+
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => AdiFaidz\Base\User::class,
+    ],
+
+  ```
+
 + Next, publish all **public assets** to get you working using **publish** command
 
   ```
