@@ -50,13 +50,13 @@ class UserController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $user = new User;
+        $user = new BaseUser;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make('user123');
         $user->save();
 
-        $userprofile = new UserProfile;
+        $userprofile = new BaseUserProfile;
         $userprofile->user_id = $user->id;
         $userprofile->save();
 
@@ -71,7 +71,7 @@ class UserController extends Controller
      * @param  int  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(BaseUser $user)
     {
         $userJson = json_encode($this->transformer->transform($user));
         return view('base::admin.user.show',compact('user', 'userJson'));
@@ -83,7 +83,7 @@ class UserController extends Controller
      * @param  int  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(BaseUser $user)
     {
         $userJson = json_encode($this->transformer->transform($user));
 
@@ -97,7 +97,7 @@ class UserController extends Controller
      * @param  int  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, BaseUser $user)
     {
         $this->validator($request->all())->validate();
 
@@ -115,7 +115,7 @@ class UserController extends Controller
      * @param  int  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(BaseUser $user)
     {
         $user->delete();
 
