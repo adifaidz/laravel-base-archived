@@ -35,11 +35,11 @@ $this->router->group(['prefix' => 'role'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\Permission
+//Routes for AdiFaidz\Base\BasePermission
 
 $this->router->bind('permission', function ($value){
   try {
-    return \AdiFaidz\Base\Permission::findOrFail($value);
+    return \AdiFaidz\Base\BasePermission::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
