@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 use AdiFaidz\Base\Http\Controllers\Controller;
 use AdiFaidz\Base\Transformers\UserProfileTransformer;
-use AdiFaidz\Base\UserProfile;
+use AdiFaidz\Base\BaseUserProfile;
 
 class UserProfileController extends Controller
 {

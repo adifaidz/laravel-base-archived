@@ -4,7 +4,7 @@ namespace AdiFaidz\Base\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-use AdiFaidz\Base\User;
+use AdiFaidz\Base\BaseUser;
 use AdiFaidz\Base\Transformers\UserTransformer;
 use AdiFaidz\Base\Paginators\UserPaginator;
 

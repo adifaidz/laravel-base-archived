@@ -6,7 +6,7 @@ use AdiFaidz\Base\Transformers\Transformer;
 use AdiFaidz\Base\Paginators\Paginator;
 
 class UserProfilePaginator extends Paginator {
-  protected $model = 'AdiFaidz\Base\UserProfile';
+  protected $model = 'AdiFaidz\Base\BaseUserProfile';
 
   public function __construct(Transformer $transformer){
     $this->transformer = $transformer;

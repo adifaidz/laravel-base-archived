@@ -13,14 +13,14 @@ $this->router->get('/permission', [
   'uses' => 'Api\PermissionController@permission',
 ]);
 
-//Routes for AdiFaidz\Base\User
+//Routes for AdiFaidz\Base\BaseUser
 
 $this->router->get('/user', [
   'as' => 'api.user',
   'uses' => 'Api\UserController@user',
 ]);
 
-//Routes for AdiFaidz\Base\UserProfile
+//Routes for AdiFaidz\Base\BaseUserProfile
 
 $this->router->get('/userprofile', [
   'as' => 'api.userprofile',

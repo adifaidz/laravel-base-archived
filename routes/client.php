@@ -10,11 +10,11 @@ $this->router->get('dashboard', [
   'uses' => 'Client\HomeController@index',
 ]);
 
-//Routes for AdiFaidz\Base\UserProfile
+//Routes for AdiFaidz\Base\BaseUserProfile
 
 $this->router->bind('userprofile', function ($value){
   try {
-    return \AdiFaidz\Base\UserProfile::findOrFail($value);
+    return \AdiFaidz\Base\BaseUserProfile::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }

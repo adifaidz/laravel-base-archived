@@ -3,7 +3,7 @@
 namespace AdiFaidz\Base\Transformers;
 
 use AdiFaidz\Base\Transformers\Transformer;
-use AdiFaidz\Base\User;
+use AdiFaidz\Base\BaseUser;
 
 class UserTransformer extends Transformer
 {

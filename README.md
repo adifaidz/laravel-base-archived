@@ -41,7 +41,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
     'users' => [
         'driver' => 'eloquent',
-        'model' => AdiFaidz\Base\User::class,
+        'model' => AdiFaidz\Base\BaseUser::class,
     ],
 
   ```

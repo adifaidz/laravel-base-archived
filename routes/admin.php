@@ -60,11 +60,11 @@ $this->router->group(['prefix' => 'permission'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\User
+//Routes for AdiFaidz\Base\BaseUser
 
 $this->router->bind('user', function ($value){
   try {
-    return \AdiFaidz\Base\User::findOrFail($value);
+    return \AdiFaidz\Base\BaseUser::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
@@ -85,11 +85,11 @@ $this->router->group(['prefix' => 'user'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\UserProfile
+//Routes for AdiFaidz\Base\BaseUserProfile
 
 $this->router->bind('userprofile', function ($value){
   try {
-    return \AdiFaidz\Base\UserProfile::findOrFail($value);
+    return \AdiFaidz\Base\BaseUserProfile::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }

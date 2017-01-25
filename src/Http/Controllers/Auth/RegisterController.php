@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
 
 use AdiFaidz\Base\Http\Controllers\Controller;
-use AdiFaidz\Base\User;
+use AdiFaidz\Base\BaseUser;
 
 class RegisterController extends Controller
 {
