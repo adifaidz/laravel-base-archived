@@ -4,7 +4,7 @@ namespace {{rootnamespace}}\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-use {{rootnamespace}}\User;
+use {{rootnamespace}}\BaseUser;
 use {{rootnamespace}}\Transformers\UserTransformer;
 use {{rootnamespace}}\Paginators\UserPaginator;
 

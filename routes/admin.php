@@ -14,7 +14,7 @@ $this->router->get('dashboard', [
 
 $this->router->bind('role', function ($value){
   try {
-    return \AdiFaidz\Base\Role::findOrFail($value);
+    return \AdiFaidz\Base\BaseRole::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }

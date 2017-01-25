@@ -7,8 +7,8 @@ use Validator;
 
 use {{rootnamespace}}\Http\Controllers\Controller;
 use {{rootnamespace}}\Transformers\RoleTransformer;
-use {{rootnamespace}}\Role;
-use {{rootnamespace}}\Permission;
+use {{rootnamespace}}\BaseRole;
+use {{rootnamespace}}\BasePermission;
 
 class RoleController extends Controller
 {
@@ -48,7 +48,7 @@ class RoleController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $role = new Role;
+        $role = new BaseRole;
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
@@ -64,7 +64,7 @@ class RoleController extends Controller
      * @param  int  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(BaseRole $role)
     {
         $roleJson = json_encode($this->transformer->transform($role));
         return view('base::admin.role.show',compact('role', 'roleJson'));
@@ -76,7 +76,7 @@ class RoleController extends Controller
      * @param  int  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(BaseRole $role)
     {
         $roleJson = json_encode($this->transformer->transform($role));
         return view('base::admin.role.edit',compact('role', 'roleJson'))->with($this->getFormReference());
@@ -89,7 +89,7 @@ class RoleController extends Controller
      * @param  int  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, BaseRole $role)
     {
         $this->validator($request->all())->validate();
 
@@ -108,7 +108,7 @@ class RoleController extends Controller
      * @param  int  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(BaseRole $role)
     {
         $role->delete();
 
@@ -121,7 +121,7 @@ class RoleController extends Controller
     public function getFormReference()
     {
       return [
-        'permissions' => Permission::all(['id','display_name']),
+        'permissions' => BasePermission::all(['id','display_name']),
       ];
     }
 

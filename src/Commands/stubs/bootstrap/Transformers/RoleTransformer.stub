@@ -3,7 +3,7 @@
 namespace {{rootnamespace}}\Transformers;
 
 use AdiFaidz\Base\Transformers\Transformer;
-use {{rootnamespace}}\Role;
+use {{rootnamespace}}\BaseRole;
 
 class RoleTransformer extends Transformer
 {

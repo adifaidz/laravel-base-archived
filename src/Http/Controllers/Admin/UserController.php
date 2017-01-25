@@ -128,7 +128,7 @@ class UserController extends Controller
     public function getFormReference()
     {
       return [
-        'roles' => Role::all(['id', 'display_name']),
+        'roles' => BaseRole::all(['id', 'display_name']),
       ];
     }
 

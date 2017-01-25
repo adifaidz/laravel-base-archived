@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 use {{rootnamespace}}\Http\Controllers\Controller;
 use {{rootnamespace}}\Transformers\UserProfileTransformer;
-use {{rootnamespace}}\UserProfile;
+use {{rootnamespace}}\BaseUserProfile;
 
 class UserProfileController extends Controller
 {
@@ -24,7 +24,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userprofile)
+    public function show(BaseUserProfile $userprofile)
     {
         $userprofileJson = json_encode($this->transformer->transform($userprofile));
         return view('base::admin.userprofile.show',compact('userprofile', 'userprofileJson'));
@@ -36,7 +36,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userprofile)
+    public function edit(BaseUserProfile $userprofile)
     {
         $userprofileJson = json_encode($this->transformer->transform($userprofile));
         return view('base::admin.userprofile.edit',compact('userprofile', 'userprofileJson'))->with($this->getFormReference());
@@ -49,7 +49,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserProfile $userprofile)
+    public function update(Request $request, BaseUserProfile $userprofile)
     {
         $this->validator($request->all())->validate();
 

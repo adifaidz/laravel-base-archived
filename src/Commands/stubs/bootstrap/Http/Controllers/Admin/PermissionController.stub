@@ -7,7 +7,7 @@ use Validator;
 
 use {{rootnamespace}}\Http\Controllers\Controller;
 use {{rootnamespace}}\Transformers\PermissionTransformer;
-use {{rootnamespace}}\Permission;
+use {{rootnamespace}}\BasePermission;
 
 class PermissionController extends Controller
 {
@@ -47,7 +47,7 @@ class PermissionController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $permission = new Permission;
+        $permission = new BasePermission;
         $permission->name = $request->name;
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
@@ -62,7 +62,7 @@ class PermissionController extends Controller
      * @param  int  $permission
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(BasePermission $permission)
     {
         $permissionJson = json_encode($this->transformer->transform($permission));
         return view('base::admin.permission.show',compact('permission', 'permissionJson'));
@@ -74,7 +74,7 @@ class PermissionController extends Controller
      * @param  int  $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(BasePermission $permission)
     {
         $permissionJson = json_encode($this->transformer->transform($permission));
         return view('base::admin.permission.edit',compact('permission', 'permissionJson'))->with($this->getFormReference());
@@ -87,7 +87,7 @@ class PermissionController extends Controller
      * @param  int  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, BasePermission $permission)
     {
         $this->validator($request->all())->validate();
 
@@ -105,7 +105,7 @@ class PermissionController extends Controller
      * @param  int  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(BasePermission $permission)
     {
         $permission->delete();
 

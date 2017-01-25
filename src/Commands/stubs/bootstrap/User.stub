@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function userprofile()
     {
-        return $this->hasOne(config('basetrust.userprofile'));
+        return $this->hasOne(config('basetrust.userprofile'), config('basetrust.user_foreign_key'));
     }
 }
