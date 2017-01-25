@@ -4,7 +4,7 @@ namespace AdiFaidz\Base\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 ;
-use AdiFaidz\Base\Permission;
+use AdiFaidz\Base\BasePermission;
 use AdiFaidz\Base\Transformers\PermissionTransformer;
 use AdiFaidz\Base\Paginators\PermissionPaginator;
 
