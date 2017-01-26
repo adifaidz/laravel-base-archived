@@ -54,7 +54,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
   ```
 
-+ After that, configure your database connection and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
++ After that, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
 
   ```
 
