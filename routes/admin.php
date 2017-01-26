@@ -10,11 +10,11 @@ $this->router->get('dashboard', [
   'uses' => 'Admin\HomeController@index',
 ]);
 
-//Routes for AdiFaidz\Base\Role
+//Routes for Role
 
 $this->router->bind('role', function ($value){
   try {
-    return \AdiFaidz\Base\BaseRole::findOrFail($value);
+    return config('basetrust.role')::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
@@ -35,11 +35,11 @@ $this->router->group(['prefix' => 'role'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\BasePermission
+//Routes for Permission
 
 $this->router->bind('permission', function ($value){
   try {
-    return \AdiFaidz\Base\BasePermission::findOrFail($value);
+    return config('basetrust.permission')::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
@@ -60,11 +60,11 @@ $this->router->group(['prefix' => 'permission'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\BaseUser
+//Routes for User
 
 $this->router->bind('user', function ($value){
   try {
-    return \AdiFaidz\Base\BaseUser::findOrFail($value);
+    return config('basetrust.user')::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
@@ -85,11 +85,11 @@ $this->router->group(['prefix' => 'user'], function () {
   ]);
 });
 
-//Routes for AdiFaidz\Base\BaseUserProfile
+//Routes for UserProfile
 
 $this->router->bind('userprofile', function ($value){
   try {
-    return \AdiFaidz\Base\BaseUserProfile::findOrFail($value);
+    return config('basetrust.userprofile')::findOrFail($value);
   } catch (Exception $e) {
     return App::abort('404');
   }
