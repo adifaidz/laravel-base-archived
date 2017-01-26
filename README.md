@@ -7,7 +7,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
    ```
 
-    composer require adifaidz/base dev-master
+    composer require adifaidz/base
 
    ```
 
