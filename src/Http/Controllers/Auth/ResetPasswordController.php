@@ -3,7 +3,7 @@
 namespace AdiFaidz\Base\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
-
+use Illuminate\Http\Request;
 use AdiFaidz\Base\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller

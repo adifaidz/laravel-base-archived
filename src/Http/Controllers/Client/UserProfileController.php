@@ -24,7 +24,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userprofile)
+    public function show(BaseUserProfile $userprofile)
     {
         $userprofileJson = json_encode($this->transformer->transform($userprofile));
         return view('base::client.userprofile.show',compact('userprofile', 'userprofileJson'));
@@ -36,7 +36,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userprofile)
+    public function edit(BaseUserProfile $userprofile)
     {
         $userprofileJson = json_encode($this->transformer->transform($userprofile));
         return view('base::client.userprofile.edit',compact('userprofile', 'userprofileJson'))->with($this->getFormReference());
@@ -49,7 +49,7 @@ class UserProfileController extends Controller
      * @param  int  $userprofile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserProfile $userprofile)
+    public function update(Request $request, BaseUserProfile $userprofile)
     {
         $userprofile->first_name = $request->first_name;
         $userprofile->last_name = $request->last_name;
@@ -64,5 +64,10 @@ class UserProfileController extends Controller
     public function getFormReference()
     {
       return [];
+    }
+
+    public function validator(array $data)
+    {
+      return Validator::make($data, []);
     }
 }
