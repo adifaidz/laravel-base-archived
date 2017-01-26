@@ -1,6 +1,6 @@
 <?php
 
-namespace Chart\Exceptions;
+namespace AdiFaidz\Base\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
