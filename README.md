@@ -69,3 +69,18 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
     php artisan db:seed --class=AdiFaidz\Base\Seeders\StartupSeeder
 
   ```
+
++ ***Optional***
+
+  To use **Base ExceptionHandler**, replace the **current** ExceptionHandler in **bootstrap/app.php** with Base ExceptionHandler class.
+
+  Your code will look like this
+
+  ```
+
+    $app->singleton(
+      Illuminate\Contracts\Debug\ExceptionHandler::class,
+      AdiFaidz\Base\Exceptions\Handler::class
+    );
+
+  ```
