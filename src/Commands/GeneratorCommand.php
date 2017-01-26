@@ -2,14 +2,12 @@
 
 namespace AdiFaidz\Base\Commands;
 
-use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 abstract class GeneratorCommand extends Command
 {
-    use AppNamespaceDetectorTrait;
 
     protected $filesystem;
 
