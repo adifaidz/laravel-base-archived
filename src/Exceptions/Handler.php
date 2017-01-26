@@ -64,17 +64,17 @@ class Handler extends ExceptionHandler
         $guard = array_get($exception->guards(), 0);
 
         switch ($guard) {
-            case 'web_client':
-                $loginRoute = 'client.login';
+            case config('base.client_guard'):
+                $routeName = config('base.redirect.unauth_client');
                 break;
-            case 'web_admin':
-                $loginRoute = 'admin.login';
+            case config('base.admin_guard'):
+                $routeName = config('base.redirect.unauth_admin');
                 break;
             default:
-                $loginRoute = 'client.login';
+                $routeName = config('base.redirect.unauth_default');
                 break;
         }
 
-        return redirect()->guest(route($loginRoute));
+        return redirect()->guest(route($routeName));
     }
 }

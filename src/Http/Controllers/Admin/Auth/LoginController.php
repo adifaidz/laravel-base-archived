@@ -41,7 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('base_guest:web_admin', ['except' => 'logout']);
+        $this->middleware('base_guest:' . config('base.admin_guard') , ['except' => 'logout']);
 
         $this->redirectTo = route('admin.home');
         $this->logoutTo   = route('admin.login');
@@ -54,7 +54,7 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('web_admin');
+        return Auth::guard(config('base.admin_guard'));
     }
 
     protected function broker()

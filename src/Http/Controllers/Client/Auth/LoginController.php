@@ -41,7 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('base_guest:web_client', ['except' => 'logout']);
+        $this->middleware('base_guest:' . config('base.client_guard'), ['except' => 'logout']);
 
         $this->redirectTo = route('client.home');
         $this->logoutTo   = route('client.login');
@@ -54,7 +54,7 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('web_client');
+        return Auth::guard(config('base.client_guard'));
     }
 
     protected function broker()

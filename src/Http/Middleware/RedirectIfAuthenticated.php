@@ -19,18 +19,18 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
           switch ($guard) {
-              case 'web_client':
-                  $redirectRoute = 'client.home';
+              case config('base.client_guard'):
+                  $routeName = config('base.redirect.auth_client');
                   break;
-              case 'web_admin':
-                  $redirectRoute = 'admin.home';
+              case config('base.admin_guard'):
+                  $routeName = config('base.redirect.auth_admin');
                   break;
               default:
-                  $redirectRoute = 'client.home';
+                  $routeName = config('base.redirect.auth_default');
                   break;
           }
 
-          return redirect()->route($redirectRoute);
+          return redirect()->route($routeName);
         }
 
         return $next($request);
