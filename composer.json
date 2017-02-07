@@ -8,8 +8,6 @@
             "email": "adifaidzabdullah@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "barryvdh/laravel-debugbar": "^2.3",
         "santigarcor/laratrust": "^3.0",
@@ -19,7 +17,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~5.0",
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "mockery/mockery": "^0.9.7"
     },
     "autoload": {
         "psr-4": {
