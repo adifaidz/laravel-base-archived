@@ -93,7 +93,12 @@ class BaseServiceProvider extends ServiceProvider
      * [loadMigrations description]
      */
     public function loadMigrations(){
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        if ($this->app->environment('testing')){
+          $this->loadMigrationsFrom(__DIR__.'/../../database/migrations/tests');
+        }
+        else{
+          $this->loadMigrationsFrom(__DIR__.'/../../database/migrations/src');
+        }
     }
 
     /**
