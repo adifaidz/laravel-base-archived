@@ -2,6 +2,7 @@
 namespace AdiFaidz\Base\Seeders;
 
 use Illuminate\Database\Seeder;
+use AdiFaidz\Base\Helpers\DBSeederHelper;
 use Illuminate\Support\Facades\DB;
 
 class StartupSeeder extends Seeder
@@ -75,13 +76,16 @@ class StartupSeeder extends Seeder
      */
     public function truncateLaratrustTables()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DBSeederHelper::disableForeignKeyChecks();
+
         DB::table(config('basetrust.permission_role_table'))->truncate();
         DB::table(config('basetrust.role_user_table'))->truncate();
+        config('basetrust.userprofile')::truncate();
+
         config('basetrust.user')::truncate();
         config('basetrust.role')::truncate();
         config('basetrust.permission')::truncate();
-        config('basetrust.userprofile')::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
+        DBSeederHelper::enableForeignKeyChecks();
     }
 }
