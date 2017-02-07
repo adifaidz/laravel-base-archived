@@ -32,7 +32,7 @@ class TransformerMakeCommand extends GeneratorCommand
       $model = $this->option('model');
       $modelNamespace = $this->parseName($model, 'getModelNamespace');
 
-      if($model == null || !$this->filesystem->exists($this->getPath($modelNamespace))){
+      if($model !== null && !$this->filesystem->exists($this->getPath($modelNamespace))){
         return $this->error("Model $model does not exists.");
       }
 

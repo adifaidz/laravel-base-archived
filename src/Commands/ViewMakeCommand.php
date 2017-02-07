@@ -113,7 +113,7 @@ class ViewMakeCommand extends GeneratorCommand
     public function buildClass(Array $args)
     {
       $stub = $args['stub'];
-      $this->replaceName($stub, $args['name']);
+      $this->replaceName($stub, $args['model']);
 
       return $stub;
     }
@@ -125,17 +125,18 @@ class ViewMakeCommand extends GeneratorCommand
     public function replaceName(&$stub, $name)
     {
       $class = ucfirst(substr($name, strrpos($name, '\\') + 1));
-      $type = ucfirst(substr($name, 0, strrpos($name, '\\')));
-      $human = preg_replace('/(?<!\ )[A-Z]/', ' $0', $class);
+      $stub = str_replace('{{modelclass}}', $class, $stub);
+
+      $human = preg_replace('/(?<!\ )[A-Z]/', '$0', $class);
+      $stub = str_replace('{{modelhuman}}', $human, $stub);
+
       $varname  = strtolower($class);
+      $stub = str_replace('{{modelname}}', $varname, $stub);
 
       $viewpath  = str_replace('\\', '.', strtolower($name));
-      $vuepath   = str_replace('\\', '-', strtolower($name));
-
-      $stub = str_replace('{{modelclass}}', $class, $stub);
-      $stub = str_replace('{{modelhuman}}', $human, $stub);
-      $stub = str_replace('{{modelname}}', $varname, $stub);
       $stub = str_replace('{{viewpath}}', "$viewpath", $stub);
+
+      $vuepath   = str_replace('\\', '-', strtolower($name));
       $stub = str_replace('{{vuepath}}', "$vuepath", $stub);
 
       return $this;
