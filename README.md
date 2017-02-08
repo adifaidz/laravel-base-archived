@@ -19,15 +19,18 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
   ```
 
-+ Add this to the **boot** method in **AppServiceProvider.php** to register all package routes
++ Add this to the **boot** method in **app\Providers\AppServiceProvider.php** to register all package routes
 
   ```
+    use AdiFaidz\Base\Base;
+
+    ...
 
     Base::routes();
 
   ```
 
-+ Run the **install** command using **artisan**, this will register guards, provider, password broker, route middlewares and middleware groups.
++ Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups.
 
   ```
 
@@ -62,7 +65,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
   ```
 
-+ Lastly seed the tables
++ Seed the tables
 
   ```
 
@@ -70,11 +73,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 
   ```
 
-+ ***Optional***
-
-  To use **Base ExceptionHandler**, replace the **current** ExceptionHandler in **bootstrap/app.php** with Base ExceptionHandler class.
-
-  Your code will look like this
++ Then, replace the **current** ExceptionHandler in **bootstrap/app.php** with Base ExceptionHandler class.
 
   ```
 
@@ -82,5 +81,12 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
       Illuminate\Contracts\Debug\ExceptionHandler::class,
       AdiFaidz\Base\Exceptions\Handler::class
     );
+
+  ```
++ **Lastly**, **start** up your **server** and go to
+
+  ```
+
+    http://localhost/login
 
   ```
