@@ -93,7 +93,7 @@ return [
     | Base View Stubs
     |--------------------------------------------------------------------------
     */
-    'stub' => [
+    'stubs' => [
       /*
       | This is the stub folder used for view generation, leave null to use the default views.
       */
