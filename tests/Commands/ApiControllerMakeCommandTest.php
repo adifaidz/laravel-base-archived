@@ -1,5 +1,5 @@
 <?php
-namespace AdiFaidz\Base\Tests;
+namespace AdiFaidz\Base\Tests\Commands;
 
 use AdiFaidz\Base\GeneratorTestCase;
 
