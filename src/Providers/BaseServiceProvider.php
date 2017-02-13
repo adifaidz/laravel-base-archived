@@ -86,6 +86,8 @@ class BaseServiceProvider extends ServiceProvider
             $this->publishViews();
             $this->publishVueComponents();
             $this->publishPublic();
+            $this->publishViewStub();
+            $this->publishVueStub();
         }
     }
 
@@ -165,6 +167,24 @@ class BaseServiceProvider extends ServiceProvider
         $this->publishes([
           __DIR__.'/../../public' => public_path('vendor/base'),
         ], 'public');
+    }
+
+    /**
+     * [publishViewStub description]
+     */
+    public function publishViewStub(){
+        $this->publishes([
+          __DIR__.'/../Commands/stubs/views' => resource_path('stubs/views'),
+        ], 'stub-view');
+    }
+
+    /**
+     * [publishVueStub description]
+     */
+    public function publishVueStub(){
+        $this->publishes([
+          __DIR__.'/../Commands/stubs/vue' => resource_path('stubs/vue'),
+        ], 'stub-view');
     }
 
     /**
