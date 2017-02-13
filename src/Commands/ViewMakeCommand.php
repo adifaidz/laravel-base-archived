@@ -124,7 +124,13 @@ class ViewMakeCommand extends GeneratorCommand
 
     public function replaceName(&$stub, $name)
     {
-      $class = ucfirst(substr($name, strrpos($name, '\\') + 1));
+      $namepos = 0;
+
+      if(strrpos($name, '\\') !== 0){
+        $namepos = strrpos($name, '\\');
+      }
+
+      $class = ucfirst(substr($name, $namepos));
       $stub = str_replace('{{modelclass}}', $class, $stub);
 
       $human = preg_replace('/(?<!\ )[A-Z]/', '$0', $class);
