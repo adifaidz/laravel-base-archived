@@ -13,15 +13,13 @@ class ControllerMakeCommand extends GeneratorCommand
 
     protected $type = 'Controller';
 
-    public function __construct(Filesystem $filesystem)
-    {
+    public function __construct(Filesystem $filesystem){
         parent::__construct();
 
         $this->filesystem = $filesystem;
     }
 
-    public function handle()
-    {
+    public function handle(){
       $name = $this->parseName($this->getNameInput());
 
       if ($this->filesystem->exists($path = $this->getPath($name))) {
@@ -40,7 +38,7 @@ class ControllerMakeCommand extends GeneratorCommand
         return $this->error("Model $model does not exists.");
       }
 
-      $transformer = $this->parseName($this->option('model'), 'getTransformerNamespace');
+      $transformer = $this->parseName($this->option('model') . 'Transformer', 'getTransformerNamespace');
 
       $args = [
        'name'=> $name,
@@ -53,28 +51,23 @@ class ControllerMakeCommand extends GeneratorCommand
       $this->info("{$this->type} created successfully.");
     }
 
-    protected function getStub()
-    {
+    protected function getStub(){
         return $this->filesystem->get(__DIR__ . '/stubs/Controller.stub');
     }
 
-    protected function getDefaultNamespace($rootNamespace)
-    {
+    protected function getDefaultNamespace($rootNamespace){
       return $rootNamespace . '\Http\Controllers';
     }
 
-    protected function getModelNamespace($rootNamespace)
-    {
+    protected function getModelNamespace($rootNamespace){
       return $rootNamespace;
     }
 
-    protected function getTransformerNamespace($rootNamespace)
-    {
+    protected function getTransformerNamespace($rootNamespace){
       return $rootNamespace . '\Transformers';
     }
 
-    public function buildClass(Array $args)
-    {
+    public function buildClass(Array $args){
       $stub = parent::buildClass($args);
 
       $this->replaceModel($stub, $args['model'])
@@ -83,8 +76,7 @@ class ControllerMakeCommand extends GeneratorCommand
       return $stub;
     }
 
-    protected function replaceModel(&$stub, $modelNamespace)
-    {
+    protected function replaceModel(&$stub, $modelNamespace){
         $modelClass = substr($modelNamespace, strrpos($modelNamespace, '\\') + 1);
 
         $modelName  = strtolower($modelClass);
@@ -101,8 +93,7 @@ class ControllerMakeCommand extends GeneratorCommand
         return $this;
     }
 
-    protected function replaceTransformerNamespace(&$stub, $transformer)
-    {
+    protected function replaceTransformerNamespace(&$stub, $transformer){
         $stub = str_replace('{{transformernamespace}}', "$transformer", $stub);
         return $this;
     }

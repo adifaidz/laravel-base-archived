@@ -13,15 +13,13 @@ class BaseMakeCommand extends GeneratorCommand
 
     protected $type = 'Base';
 
-    public function __construct(Filesystem $filesystem)
-    {
+    public function __construct(Filesystem $filesystem){
         parent::__construct();
 
         $this->filesystem = $filesystem;
     }
 
-    public function handle()
-    {
+    public function handle(){
       $viewStubs = $this->filesystem->allFiles($this->getStub());
 
       foreach ($viewStubs as $stub) {
@@ -42,24 +40,21 @@ class BaseMakeCommand extends GeneratorCommand
       return __DIR__ . '/stubs/bootstrap';
     }
 
-    public function buildClass(Array $args)
-    {
+    public function buildClass(Array $args){
       $stub = $args['stub'];
       $this->replaceRootNamespace($stub);
 
       return $stub;
     }
 
-    public function replaceRootNamespace(&$stub)
-    {
+    public function replaceRootNamespace(&$stub){
       $namespace = rtrim($this->laravel->getNamespace(), "\\");
       $stub = str_replace('{{rootnamespace}}', $namespace, $stub);
 
       return $this;
     }
 
-    protected function getDefaultNamespace($rootNamespace)
-    {
+    protected function getDefaultNamespace($rootNamespace){
       return $rootNamespace;
     }
 }

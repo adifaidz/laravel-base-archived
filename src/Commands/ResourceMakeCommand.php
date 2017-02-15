@@ -4,6 +4,7 @@ namespace AdiFaidz\Base\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Filesystem\Filesystem;
 
 class ResourceMakeCommand extends Command
 {
@@ -21,14 +22,17 @@ class ResourceMakeCommand extends Command
      */
     protected $description = 'Create a new full CRUD ready components based on specified model';
 
+    protected $filesystem;
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(Filesystem $filesystem){
         parent::__construct();
+
+        $this->filesystem = $filesystem;
     }
 
     /**
@@ -36,139 +40,129 @@ class ResourceMakeCommand extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
-      app()['composer']->dumpAutoLoads();
-      $name = $this->argument('name');
-      $type = $this->option('type');
+    public function handle(){
+        app()['composer']->dumpAutoLoads();
+        $name = $this->argument('name');
+        $type = $this->option('type');
 
-      if($type != "admin" && $type != "client"){
-        return $this->error('Type not supported');
-      }
+        if($type != "admin" && $type != "client"){
+          return $this->error('Type not supported');
+        }
 
-      $this->callModelMakeCommand($name);
-      $this->callMigrateCommand();
-      $this->callApiControllerMakeCommand($name);
-      $this->callControllerMakeCommand($name);
-      $this->callPaginatorMakeCommand($name);
-      $this->callViewMakeCommand($name);
-      $this->appendApiRoute($name);
-      $this->appendWebRoute($name);
-      $this->callMigrateRollbackCommand();
-      echo exec('gulp');
+        if (!$this->alreadyExists($name)){
+          return $this->error("Model $name does not exists!");
+        }
+
+        $this->callMigrateCommand();
+        $this->callApiControllerMakeCommand($name);
+        $this->callControllerMakeCommand($name);
+        $this->callPaginatorMakeCommand($name);
+        $this->callTransformerMakeCommand($name);
+        $this->callViewMakeCommand($name);
+        $this->appendApiRoute($name);
+        $this->appendWebRoute($name);
+
+        echo exec('gulp');
     }
 
-    public function callModelMakeCommand($name)
-    {
-      $this->call('factory:model',[
-        'name' => $name,
-        '-m' => true,
-      ]);
+    public function callMigrateCommand(){
+        $this->call('migrate');
     }
 
-    public function callMigrateCommand()
-    {
-      $this->call('migrate');
+    public function callControllerMakeCommand($name){
+        $this->call('factory:controller',[
+          'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
+          '-m' => $name,
+        ]);
     }
 
-    public function callControllerMakeCommand($name)
-    {
-      $this->call('factory:controller',[
-        'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
-        '-m' => $name,
-      ]);
+    public function callPaginatorMakeCommand($name){
+        $this->call('factory:paginator',[
+          'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
+          '-m' => $name,
+        ]);
     }
 
-    public function callPaginatorMakeCommand($name)
-    {
-      $this->call('factory:paginator',[
-        'name' => $name,
-        '-m' => $name,
-        '-t' => true,
-      ]);
+    public function callTransformerMakeCommand($name){
+        $this->call('factory:transformer',[
+          'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
+          '-m' => $name,
+        ]);
     }
 
-    public function callViewMakeCommand($name)
-    {
-      $this->call('factory:view',[
-        'name' => ucfirst($this->option('type')) . '\\' . ucfirst($name),
-        '-m' => $name,
-      ]);
+    public function callViewMakeCommand($name){
+        $this->call('factory:view',[
+          'name' => ucfirst($this->option('type')) . '\\' . ucfirst($name),
+          '-m' => $name,
+        ]);
     }
 
-    public function callApiControllerMakeCommand($name)
-    {
-      $this->call('factory:apicontroller',[
-        'name' => $name,
-        '-m' => $name,
-      ]);
+    public function callApiControllerMakeCommand($name){
+        $this->call('factory:apicontroller',[
+          'name' => ucfirst($this->option('type')) . '\\' . ucfirst($name),
+          '-m' => $name,
+        ]);
     }
 
     public function appendApiRoute($name){
-      $namespace =$this->parseName($name);
+        $namespace =$this->parseName($name);
 
-      $stub = file_get_contents(__DIR__.'/stubs/apiRoutes.stub');
-      $stub = str_replace('{{modelname}}', strtolower($name), $stub);
-      $stub = str_replace('{{model}}', ucwords($name), $stub);
-      $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
+        $stub = file_get_contents(__DIR__.'/stubs/apiRoutes.stub');
+        $stub = str_replace('{{modelname}}', strtolower($name), $stub);
+        $stub = str_replace('{{model}}', ucwords($name), $stub);
+        $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
 
-      $dest = "routes/api.php";
-      $find = str_replace('\\', '\\\\\\\\', $namespace);
+        $dest = "routes/api.php";
+        $fullPath = base_path($dest);
 
-      if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
-        $this->info('Api route already added');
-        return;
-      }
+        if(!$this->filesystem->exists($fullPath)){
+            $this->error("$fullPath does not exist");
+            return;
+        }
 
-      file_put_contents(
-          base_path($dest),
-          $stub,
-          FILE_APPEND
-      );
+        $find = str_replace('\\', '\\\\\\\\', $namespace);
+
+        if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
+            $this->info('Api route already added');
+            return;
+        }
+
+        $this->filesystem->append($fullPath, $stub);
     }
 
     public function appendWebRoute($name){
-      $namespace =$this->parseName($name);
-      $type = $this->option('type');
+        $namespace =$this->parseName($name);
+        $type = $this->option('type');
 
-      $stub = file_get_contents(__DIR__.'/stubs/webRoutes.stub');
-      $stub = str_replace('{{modelname}}', strtolower($name), $stub);
-      $stub = str_replace('{{routeurl}}', strtolower($name), $stub);
-      $stub = str_replace('{{routename}}', strtolower($type) . '.' . strtolower($name), $stub);
-      $stub = str_replace('{{controller}}', ucfirst($type) . '\\' . ucfirst($name), $stub);
-      $stub = str_replace('{{type}}', strtolower($type), $stub);
-      $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
+        $stub = file_get_contents(__DIR__.'/stubs/webRoutes.stub');
+        $stub = str_replace('{{modelname}}', strtolower($name), $stub);
+        $stub = str_replace('{{routeurl}}', strtolower($name), $stub);
+        $stub = str_replace('{{routename}}', strtolower($type) . '.' . strtolower($name), $stub);
+        $stub = str_replace('{{controller}}', ucfirst($type) . '\\' . ucfirst($name), $stub);
+        $stub = str_replace('{{type}}', strtolower($type), $stub);
+        $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
 
-      $dest = "routes/web/{$this->option('type')}.php";
-      $find = str_replace('\\', '\\\\\\\\', $namespace);
+        $dest = "routes/web/{$this->option('type')}.php";
+        $fullPath = base_path($dest);
 
-      if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
-        $this->info('Web route already added');
-        return;
-      }
+        if(!$this->filesystem->exists($fullPath )){
+            $this->error("$fullPath does not exist");
+            return;
+        }
 
-      file_put_contents(
-          base_path($dest),
-          $stub,
-          FILE_APPEND
-      );
+        $find = str_replace('\\', '\\\\\\\\', $namespace);
+
+        if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
+            $this->info('Web route already added');
+            return;
+        }
+
+        $this->filesystem->append($fullPath, $stub);
     }
 
-    public function callMigrateRollbackCommand()
-    {
-      $migrate = $this->option('migrate');
-      if(!$migrate)
-        $this->call('migrate:rollback');
-    }
-
-    private function getDefaultNamespace($rootNamespace){
-      return $rootNamespace;
-    }
-
-    protected function parseName($name, $namespaceMethod= 'getDefaultNamespace', $rootNamespace = null)
-    {
+    protected function parseName($name, $namespaceMethod= 'getDefaultNamespace', $rootNamespace = null){
         if($rootNamespace === null)
-          $rootNamespace = $this->laravel->getNamespace();
+          $rootNamespace = $this->rootNamespace();
 
         if (Str::startsWith($name, $rootNamespace)) {
             return $name;
@@ -179,5 +173,22 @@ class ResourceMakeCommand extends Command
         }
 
         return $this->parseName($this->{$namespaceMethod}(trim($rootNamespace, '\\')).'\\'.$name, $namespaceMethod, $rootNamespace);
+    }
+
+    private function getDefaultNamespace($rootNamespace){
+        return $rootNamespace;
+    }
+
+    protected function rootNamespace(){
+        return $this->laravel->getNamespace();
+    }
+
+    protected function alreadyExists($rawName){
+        return $this->filesystem->exists($this->getPath($this->parseName($rawName)));
+    }
+
+    protected function getPath($name){
+        $name = str_replace_first($this->rootNamespace(), '', $name);
+        return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
     }
 }

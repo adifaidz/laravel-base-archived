@@ -14,15 +14,13 @@ class PaginatorMakeCommand extends GeneratorCommand
     protected $type='Paginator';
 
 
-    public function __construct(Filesystem $filesystem)
-    {
+    public function __construct(Filesystem $filesystem){
         parent::__construct();
 
         $this->filesystem = $filesystem;
     }
 
-    public function handle()
-    {
+    public function handle(){
       $name = $this->parseName($this->getNameInput());
 
       if ($this->filesystem->exists($path = $this->getPath($name))) {
@@ -60,23 +58,20 @@ class PaginatorMakeCommand extends GeneratorCommand
         ]);
       }
     }
-    protected function getStub()
-    {
+
+    protected function getStub(){
       return $this->filesystem->get(__DIR__ . '/stubs/Paginator.stub');
     }
 
-    protected function getDefaultNamespace($rootNamespace)
-    {
+    protected function getDefaultNamespace($rootNamespace){
       return $rootNamespace . '\Paginators';
     }
 
-    protected function getModelNamespace($rootNamespace)
-    {
+    protected function getModelNamespace($rootNamespace){
       return $rootNamespace;
     }
 
-    public function buildClass(Array $args)
-    {
+    public function buildClass(Array $args){
       $stub = parent::buildClass($args);
 
       $this->replaceModel($stub, $args['model'])
@@ -85,14 +80,12 @@ class PaginatorMakeCommand extends GeneratorCommand
       return $stub;
     }
 
-    protected function replaceModel(&$stub, $model)
-    {
+    protected function replaceModel(&$stub, $model){
         $stub = str_replace('{{model}}', $model, $stub);
         return $this;
     }
 
-    protected function replaceQuery(&$stub, $model)
-    {
+    protected function replaceQuery(&$stub, $model){
         $columns = $model::getColumns();
 
         $query = "->where('{$columns[0]}', 'like', \$value)";

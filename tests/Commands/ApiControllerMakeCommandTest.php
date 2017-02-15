@@ -15,9 +15,8 @@ class ApiControllerMakeCommandTest extends GeneratorTestCase
 
     public function test_create_basic_controller()
     {
-
-        $this->filesystem->makeDirectory($this->controller_path('Api'), 493, true);
         $this->filesystem->put($this->app_path('Post.php'), '');
+
         $this->files = [
             [
               'name' => 'Post',
@@ -35,9 +34,9 @@ class ApiControllerMakeCommandTest extends GeneratorTestCase
 
     public function test_create_namespace_controller()
     {
-        $this->filesystem->makeDirectory($this->controller_path('Api/Admin'), 493, true);
         $this->filesystem->makeDirectory($this->app_path('Admin'));
         $this->filesystem->put($this->app_path('Admin/Post.php'), '');
+
         $this->files = [
             [
               'name' => 'Admin\Post',

@@ -15,9 +15,8 @@ class ControllerMakeCommandTest extends GeneratorTestCase
 
     public function test_create_basic_controller()
     {
-
-        $this->filesystem->makeDirectory($this->controller_path(), 493, true);
         $this->filesystem->put($this->app_path('Post.php'), '');
+
         $this->files = [
             [
               'name' => 'Post',
@@ -31,13 +30,20 @@ class ControllerMakeCommandTest extends GeneratorTestCase
         ];
 
         $this->processFiles($this->files);
+
+        $this->files = [
+            [
+              'name' => 'Post',
+              'expected_path' =>$this->app_path('Post.php'),
+            ],
+        ];
     }
 
     public function test_create_namespace_controller()
     {
-        $this->filesystem->makeDirectory($this->controller_path('Admin'), 493, true);
         $this->filesystem->makeDirectory($this->app_path('Admin'));
         $this->filesystem->put($this->app_path('Admin/Post.php'), '');
+
         $this->files = [
             [
               'name' => 'Admin\Post',

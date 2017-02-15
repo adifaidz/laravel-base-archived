@@ -10,8 +10,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
 
   protected $description = 'Create a new Eloquent model class based on Factory template';
 
-  protected function getStub()
-  {
+  protected function getStub(){
       return __DIR__.'/stubs/Model.stub';
   }
 }

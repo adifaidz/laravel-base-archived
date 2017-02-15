@@ -51,6 +51,12 @@ class ViewMakeCommand extends GeneratorCommand
         $stubPath = str_replace('.stub', '.php', $stubPath);
 
         $path = $viewPath .$stubPath;
+        $filename = str_replace("\\", '', $stubPath);
+
+        if($this->filesystem->exists($path)){
+          $this->info("View $filename already exists");
+          continue;
+        }
 
         $args['stub'] = $this->filesystem->get($stub->getPathName());
         $this->makeDirectory($path);
@@ -63,6 +69,12 @@ class ViewMakeCommand extends GeneratorCommand
         $stubPath = str_replace('.stub', '.vue', $stubPath);
 
         $path = $vuePath .$stubPath;
+        $filename = str_replace("\\", '', $stubPath);
+
+        if($this->filesystem->exists($path)){
+          $this->info("Vue component $filename already exists");
+          continue;
+        }
 
         $args['stub'] = $this->filesystem->get($stub->getPathName());
         $this->makeDirectory($path);

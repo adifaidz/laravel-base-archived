@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use {{rootnamespace}}Http\Controllers\Controller;
 use {{modelnamespace}};
-use {{transformernamespace}}Transformer;
+use {{transformernamespace}};
 
 class {{class}} extends Controller
 {

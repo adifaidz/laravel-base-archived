@@ -16,15 +16,13 @@ class BaseInstallCommand extends Command
 
     protected $forced = true;
 
-    public function __construct(Filesystem $filesystem)
-    {
+    public function __construct(Filesystem $filesystem){
         parent::__construct();
 
         $this->filesystem = $filesystem;
     }
 
-    public function handle()
-    {
+    public function handle(){
       $settings = $this->getSettings();
 
       foreach ($settings as $name => $setting) {
@@ -75,8 +73,7 @@ class BaseInstallCommand extends Command
       ];
     }
 
-    protected function putContent($path, $content)
-    {
+    protected function putContent($path, $content){
         if($this->alreadyExists($path) && !$this->forced) {
             $this->error($path . ' already exists!');
             return false;
@@ -87,8 +84,7 @@ class BaseInstallCommand extends Command
         return true;
     }
 
-    protected function compileContent($path, $setting)
-    {
+    protected function compileContent($path, $setting){
         $originalContent = $this->filesystem->get($path);
         $content = $this->filesystem->get($setting['stub']);
 
@@ -103,13 +99,11 @@ class BaseInstallCommand extends Command
         return $originalContent;
     }
 
-    protected function alreadyExists($path)
-    {
+    protected function alreadyExists($path){
       return $this->filesystem->exists($path);
     }
 
-    protected function makeDirectory($path)
-    {
+    protected function makeDirectory($path){
         if (! $this->filesystem->isDirectory(dirname($path))) {
             $this->filesystem->makeDirectory(dirname($path), 0777, true, true);
         }
