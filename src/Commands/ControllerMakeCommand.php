@@ -38,7 +38,7 @@ class ControllerMakeCommand extends GeneratorCommand
         return $this->error("Model $model does not exists.");
       }
 
-      $transformer = $this->parseName($this->option('model') . 'Transformer', 'getTransformerNamespace');
+      $transformer = $this->parseName($name . 'Transformer', 'getTransformerNamespace');
 
       $args = [
        'name'=> $name,
