@@ -38,8 +38,8 @@ class ApiControllerMakeCommand extends GeneratorCommand
         return $this->error("Model $model does not exists.");
       }
 
-      $transformer = $this->parseName($this->option('name') . 'Transformer' , 'getTransformerNamespace');
-      $paginator = $this->parseName($this->option('name') . 'Paginator', 'getPaginatorNamespace');
+      $transformer = $this->parseName($this->argument('name') . 'Transformer' , 'getTransformerNamespace');
+      $paginator = $this->parseName($this->argument('name') . 'Paginator', 'getPaginatorNamespace');
 
       $args = [
        'name'=> $name,
