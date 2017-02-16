@@ -83,7 +83,7 @@ class TransformerMakeCommand extends GeneratorCommand
         //Model specific
         $class = substr($model, strrpos($model, '\\') + 1);
 
-        $stub = str_replace('{{modelnamespace}}', "\nuse $model;\n", $stub);
+        $stub = str_replace('{{modelnamespace}}', "\nuse $model;", $stub);
         return $this;
     }
 

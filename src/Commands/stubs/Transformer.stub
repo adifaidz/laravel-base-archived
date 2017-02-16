@@ -2,9 +2,7 @@
 
 namespace {{namespace}};
 
-use AdiFaidz\Base\Transformers\Transformer;
-
-{{modelnamespace}}
+use AdiFaidz\Base\Transformers\Transformer;{{modelnamespace}}
 
 class {{class}} extends Transformer
 {
