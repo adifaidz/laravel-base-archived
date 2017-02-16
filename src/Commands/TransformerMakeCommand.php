@@ -27,19 +27,22 @@ class TransformerMakeCommand extends GeneratorCommand
         return $this->error($this->getNameInput() . ' already exists!');
       }
 
-      $model = $this->option('model');
-      $modelNamespace = $this->parseName($model, 'getModelNamespace');
+      $modelClass = $this->option('model');
 
-      if($model !== null && !$this->filesystem->exists($this->getPath($modelNamespace))){
-        return $this->error("Model $model does not exists.");
+      if($modelClass !== null){
+        $model = $this->parseName($modelClass, 'getModelNamespace');
       }
       else{
-        $modelNamespace = null;
+        $model = null;
+      }
+
+      if($modelClass !== null && !$this->filesystem->exists($this->getPath($model))){
+        return $this->error("Model $modelClass does not exists.");
       }
 
       $args = [
        'name'=> $name,
-       'modelnamespace'=> $modelNamespace,
+       'model'=> $model,
       ];
 
       $this->makeDirectory($path);
@@ -62,32 +65,32 @@ class TransformerMakeCommand extends GeneratorCommand
     public function buildClass(Array $args){
       $stub = parent::buildClass($args);
 
-      $this->replaceModel($stub, $args['modelnamespace'])
-           ->replaceStructure($stub, $args['modelnamespace']);
+      $this->replaceModel($stub, $args['model'])
+           ->replaceStructure($stub, $args['model']);
 
       return $stub;
     }
 
-    protected function replaceModel(&$stub, $modelnamespace){
+    protected function replaceModel(&$stub, $model){
         $stub = str_replace('{{param}}', '$item', $stub);
 
         //No model specified
-        if(!$modelnamespace){
+        if(!$model){
           $stub = str_replace('{{modelnamespace}}', "", $stub);
           return $this;
         }
 
         //Model specific
-        $class = substr($modelnamespace, strrpos($modelnamespace, '\\') + 1);
+        $class = substr($model, strrpos($model, '\\') + 1);
 
-        $stub = str_replace('{{modelnamespace}}', "\nuse $modelnamespace;\n", $stub);
+        $stub = str_replace('{{modelnamespace}}', "\nuse $model;\n", $stub);
         return $this;
     }
 
-    protected function replaceStructure(&$stub, $modelnamespace){
+    protected function replaceStructure(&$stub, $model){
 
         //No model specified
-        if(!$modelnamespace){
+        if(!$model){
           $structure = "'id' => \$item->id,\n\t\t\t\t\t";
           $structure .= "'created_at' => \$item->created_at,\n\t\t\t\t\t";
           $structure .= "'updated_at' => \$item->updated_at,\n\t\t\t\t\t";
@@ -96,7 +99,7 @@ class TransformerMakeCommand extends GeneratorCommand
         }
 
         //Model specific
-        $columns = $modelnamespace::getColumns();
+        $columns = $this->getColumns($model);
 
         $structure = '';
         foreach ($columns as $column) {
@@ -105,5 +108,9 @@ class TransformerMakeCommand extends GeneratorCommand
 
         $stub = str_replace('{{structure}}', $structure, $stub);
         return $this;
+    }
+
+    public function getColumns($model){
+      return $model::getColumns();
     }
 }

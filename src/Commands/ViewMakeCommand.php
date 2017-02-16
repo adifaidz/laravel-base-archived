@@ -26,16 +26,16 @@ class ViewMakeCommand extends GeneratorCommand
       $viewPath = $this->parseName($name, 'getViewPath', base_path());
       $vuePath = $this->parseName($name, 'getVuePath', base_path());
 
-      $model = $this->option('model');
+      $modelClass = $this->option('model');
 
-      if(!$model){
+      if(!$modelClass){
         return $this->error("Model class is required.");
       }
 
-      $modelNamespace = $this->parseName($model, 'getDefaultNamespace');
+      $model = $this->parseName($modelClass, 'getDefaultNamespace');
 
-      if(!$this->filesystem->exists($this->getPath($modelNamespace))){
-        return $this->error("Model $model does not exists.");
+      if(!$this->filesystem->exists($this->getPath($model))){
+        return $this->error("Model $modelClass does not exists.");
       }
 
       $args = [
@@ -125,7 +125,8 @@ class ViewMakeCommand extends GeneratorCommand
     public function buildClass(Array $args)
     {
       $stub = $args['stub'];
-      $this->replaceName($stub, $args['model']);
+      $this->replaceModel($stub, $args['model'])
+           ->replaceName($stub, $args['name']);
 
       return $stub;
     }
@@ -134,15 +135,14 @@ class ViewMakeCommand extends GeneratorCommand
       return strtolower(trim($this->argument('name')));
     }
 
-    public function replaceName(&$stub, $name)
-    {
-      $namepos = 0;
+    public function replaceModel(&$stub, $model){
+      $modelpos = 0;
 
-      if(strrpos($name, '\\') !== 0){
-        $namepos = strrpos($name, '\\');
+      if(strrpos($model, '\\') !== 0){
+        $modelpos = strrpos($model, '\\');
       }
 
-      $class = ucfirst(substr($name, $namepos));
+      $class = ucfirst(substr($model, $modelpos));
       $stub = str_replace('{{modelclass}}', $class, $stub);
 
       $human = preg_replace('/(?<!\ )[A-Z]/', '$0', $class);
@@ -151,6 +151,10 @@ class ViewMakeCommand extends GeneratorCommand
       $varname  = strtolower($class);
       $stub = str_replace('{{modelname}}', $varname, $stub);
 
+      return $this;
+    }
+
+    public function replaceName(&$stub, $name){
       $viewpath  = str_replace('\\', '.', strtolower($name));
       $stub = str_replace('{{viewpath}}', "$viewpath", $stub);
 
@@ -160,8 +164,7 @@ class ViewMakeCommand extends GeneratorCommand
       return $this;
     }
 
-    public function appendAppJs($name, $args)
-    {
+    public function appendAppJs($name, $args){
       $filePath = base_path() .'\resources\assets\js\app.js';
       $stubPath = __DIR__ . '/../stubs/app.js.stub';
 
