@@ -3,7 +3,7 @@ namespace AdiFaidz\Base\Tests\Commands;
 
 use AdiFaidz\Base\GeneratorTestCase;
 
-class VieMakeCommandTest extends GeneratorTestCase
+class ViewMakeCommandTest extends GeneratorTestCase
 {
     protected function callCommand($args)
     {
@@ -49,6 +49,7 @@ class VieMakeCommandTest extends GeneratorTestCase
 
     public function test_create_namespace_view()
     {
+
         $this->filesystem->makeDirectory($this->app_path('Admin'));
         $this->filesystem->put($this->app_path('Admin/Post.php'), '');
 
