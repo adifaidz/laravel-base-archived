@@ -62,7 +62,7 @@ class ResourceMakeCommand extends Command
         $this->appendApiRoute($name);
         $this->appendWebRoute($name);
 
-        echo exec('gulp');
+        echo exec('npm run dev');
     }
 
     public function callMigrateCommand(){
@@ -105,36 +105,38 @@ class ResourceMakeCommand extends Command
     }
 
     public function appendApiRoute($name){
+        $type = $this->option('type');
+        $path = base_path("routes/api.php");
         $namespace =$this->parseName($name);
 
-        $stub = file_get_contents(__DIR__.'/stubs/apiRoutes.stub');
+        $stub = $this->filesystem->get(__DIR__.'/stubs/apiRoutes.stub');
         $stub = str_replace('{{modelname}}', strtolower($name), $stub);
-        $stub = str_replace('{{model}}', ucwords($name), $stub);
+        $stub = str_replace('{{model}}', ucfirst($type) . '\\' . ucfirst($name), $stub);
         $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
 
-        $dest = "routes/api.php";
-        $fullPath = base_path($dest);
+        if(!$this->filesystem->exists($path)){
+            $this->makeDirectory($path);
+            $this->filesystem->put($path, '<?php' . PHP_EOL);
+        }
+        else{
+          $routeFile = $this->filesystem->get($path);
 
-        if(!$this->filesystem->exists($fullPath)){
-            $this->error("$fullPath does not exist");
-            return;
+          if(str_contains(trim($routeFile), trim($stub))){
+              $this->info('Api route already added');
+              return;
+          }
         }
 
-        $find = str_replace('\\', '\\\\\\\\', $namespace);
-
-        if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
-            $this->info('Api route already added');
-            return;
-        }
-
-        $this->filesystem->append($fullPath, $stub);
+        $this->filesystem->append($path, $stub);
     }
 
     public function appendWebRoute($name){
-        $namespace =$this->parseName($name);
-        $type = $this->option('type');
 
-        $stub = file_get_contents(__DIR__.'/stubs/webRoutes.stub');
+        $type = $this->option('type');
+        $path = $type === "client" ? config('base.client_route') : config('base.admin_route');
+        $namespace =$this->parseName($name);
+
+        $stub = $this->filesystem->get(__DIR__.'/stubs/webRoutes.stub');
         $stub = str_replace('{{modelname}}', strtolower($name), $stub);
         $stub = str_replace('{{routeurl}}', strtolower($name), $stub);
         $stub = str_replace('{{routename}}', strtolower($type) . '.' . strtolower($name), $stub);
@@ -142,22 +144,21 @@ class ResourceMakeCommand extends Command
         $stub = str_replace('{{type}}', strtolower($type), $stub);
         $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
 
-        $dest = "routes/web/{$this->option('type')}.php";
-        $fullPath = base_path($dest);
+        if(!$this->filesystem->exists($path)){
+            $this->makeDirectory($path);
+            $this->filesystem->put($path, '<?php' . PHP_EOL);
+        }
+        else{
+          $routeFile = $this->filesystem->get($path);
 
-        if(!$this->filesystem->exists($fullPath )){
-            $this->error("$fullPath does not exist");
-            return;
+          if(str_contains(trim($routeFile), trim($stub))){
+              $this->info('Web route already added');
+              return;
+          }
         }
 
-        $find = str_replace('\\', '\\\\\\\\', $namespace);
 
-        if(exec('grep '. escapeshellarg("//Routes for $find") . " $dest")){
-            $this->info('Web route already added');
-            return;
-        }
-
-        $this->filesystem->append($fullPath, $stub);
+        $this->filesystem->append($path, $stub);
     }
 
     protected function parseName($name, $namespaceMethod= 'getDefaultNamespace', $rootNamespace = null){
@@ -190,5 +191,11 @@ class ResourceMakeCommand extends Command
     protected function getPath($name){
         $name = str_replace_first($this->rootNamespace(), '', $name);
         return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
+    }
+
+    protected function makeDirectory($path){
+        if (!$this->filesystem->isDirectory(dirname($path))) {
+            $this->filesystem->makeDirectory(dirname($path), 0777, true, true);
+        }
     }
 }
