@@ -88,6 +88,7 @@ class BaseServiceProvider extends ServiceProvider
             $this->publishPublic();
             $this->publishViewStub();
             $this->publishVueStub();
+            $this->publishAssets();
         }
     }
 
@@ -156,7 +157,7 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function publishVueComponents(){
         $this->publishes([
-          __DIR__.'/../../resources/assets/js/components/base' => resource_path('assets/js/components/base'),
+          __DIR__.'/../../resources/assets/js/components' => resource_path('assets/js/components'),
         ], 'vue');
     }
 
@@ -185,6 +186,19 @@ class BaseServiceProvider extends ServiceProvider
         $this->publishes([
           __DIR__.'/../Commands/stubs/vue' => resource_path('stubs/vue'),
         ], 'stub-view');
+    }
+
+    /**
+     * [publishAssets]
+     */
+    public function publishAssets(){
+        $this->publishes([
+          __DIR__.'/../../resources/assets/js/base_bootstrap.js' => resource_path('assets/js/base_bootstrap.js'),
+          __DIR__.'/../../resources/assets/sass/base_app.scss' => resource_path('assets/sass/base_app.scss'),
+          __DIR__.'/../../resources/assets/sass/_base_variables.scss' => resource_path('assets/sass/_base_variables.scss'),
+          __DIR__.'/../../.babelrc' => base_path('.babelrc'),
+          __DIR__.'/../../base_webpack.mix.js' => base_path('base_webpack.mix.js'),
+        ], 'asset');
     }
 
     /**
