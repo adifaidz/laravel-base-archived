@@ -1,6 +1,4 @@
 
-//Routes for {{modelnamespace}}
-
 Route::bind('{{modelname}}', function ($value){
   try {
     return \{{modelnamespace}}::findOrFail($value);

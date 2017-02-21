@@ -1,6 +1,4 @@
 
-//Routes for {{modelnamespace}}
-
 Route::get('/{{modelname}}', [
   'as' => 'api.{{modelname}}',
   'uses' => 'Api\{{model}}Controller@{{modelname}}',
