@@ -6,10 +6,10 @@
   <title>{{config('base.name')}} | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="{{asset('vendor/base/css/app.css')}}">
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <style>
     html{
-      background: url({{asset('vendor/base/img/login-bg.jpg')}});
+      background: url({{asset('img/login-bg.jpg')}});
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -41,7 +41,7 @@
   @yield('content')
 </div>
 
-<script src="{{asset('vendor/base/js/app.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 @yield('body')
 </body>
 </html>

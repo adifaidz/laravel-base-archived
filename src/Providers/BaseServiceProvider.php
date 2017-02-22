@@ -193,6 +193,7 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function publishAssets(){
         $this->publishes([
+          __DIR__.'/../../resources/assets/img/login-bg.jpg' => resource_path('assets/img/login-bg.jpg'),
           __DIR__.'/../../resources/assets/js/base_bootstrap.js' => resource_path('assets/js/base_bootstrap.js'),
           __DIR__.'/../../resources/assets/sass/base_app.scss' => resource_path('assets/sass/base_app.scss'),
           __DIR__.'/../../resources/assets/sass/_base_variables.scss' => resource_path('assets/sass/_base_variables.scss'),

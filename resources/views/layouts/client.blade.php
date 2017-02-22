@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{config('base.name')}} | @yield('title')</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="{{ asset('vendor/base/css/app.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
   <style>
     .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini{
       height:100%;
@@ -167,7 +167,7 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-<script src="{{ asset('vendor/base/js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 @yield('body')
 </body>
 </html>
