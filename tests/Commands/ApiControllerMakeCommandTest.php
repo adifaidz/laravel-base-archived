@@ -7,7 +7,7 @@ class ApiControllerMakeCommandTest extends GeneratorTestCase
 {
     protected function callCommand($args)
     {
-      $this->artisan('factory:apicontroller',[
+      $this->artisan('base:apicontroller',[
         'name' => $args['name'],
         '--model' => $args['model'],
       ]);

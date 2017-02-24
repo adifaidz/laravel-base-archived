@@ -7,7 +7,7 @@ class ModelMakeCommandTest extends GeneratorTestCase
 {
     protected function callCommand($args)
     {
-      $this->artisan('factory:model',[
+      $this->artisan('base:model',[
         'name' => $args['name'],
       ]);
     }

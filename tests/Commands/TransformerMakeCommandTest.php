@@ -14,7 +14,7 @@ class TransformerMakeCommandTest extends GeneratorTestCase
 
     protected function callCommand($args)
     {
-      $this->artisan('factory:transformer',[
+      $this->artisan('base:transformer',[
         'name' => $args['name'],
         '--model' => $args['model'],
       ]);

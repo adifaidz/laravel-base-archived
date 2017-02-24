@@ -7,7 +7,7 @@ class ViewMakeCommandTest extends GeneratorTestCase
 {
     protected function callCommand($args)
     {
-      $this->artisan('factory:view',[
+      $this->artisan('base:view',[
         'name' => $args['name'],
         '--model' => $this->app->getNamespace() . $args['name'],
       ]);
