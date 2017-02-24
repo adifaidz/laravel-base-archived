@@ -1,4 +1,4 @@
-@extends('layouts.{{type}}')
+@extends('base::layouts.{{type}}')
 
 @section('title')
   {{modelhuman}} List
