@@ -51,6 +51,10 @@ class BaseServiceProvider extends ServiceProvider
       'Menu' => \Lavary\Menu\Facade::class,
     ];
 
+    protected $devFacades = [
+      'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    ];
+
     protected $middleware = [
       'base_guest' => \AdiFaidz\Base\Http\Middleware\RedirectIfAuthenticated::class,
       'role' => \Laratrust\Middleware\LaratrustRole::class,
@@ -216,6 +220,8 @@ class BaseServiceProvider extends ServiceProvider
 
         $this->registerFacades();
 
+        $this->registerDevFacades();
+
         $this->registerConfigs();
     }
 
@@ -246,6 +252,19 @@ class BaseServiceProvider extends ServiceProvider
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         foreach ($this->facades as $alias => $facade) {
             $loader->alias($alias, $facade);
+        }
+    }
+
+    /**
+     * [registerDevFacades description]
+     */
+    public function registerDevFacades(){
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+
+        if ($this->app->environment(config('base.dev_env'))) {
+          foreach ($this->facades as $alias => $facade) {
+              $loader->alias($alias, $facade);
+          }
         }
     }
 
