@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <style>
     html{
-      background: url({{asset('img/login-bg.jpg')}});
+      background: url({{asset('images/login-bg.jpg')}});
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
