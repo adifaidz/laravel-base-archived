@@ -52,7 +52,7 @@ class PaginatorMakeCommand extends GeneratorCommand
 
       if($transform)
       {
-        $this->call('factory:transformer', [
+        $this->call('base:transformer', [
           'name' => str_replace('Paginator', '', $this->getNameInput()),
           '-m' => $model
         ]);

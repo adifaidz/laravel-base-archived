@@ -70,35 +70,35 @@ class ResourceMakeCommand extends Command
     }
 
     public function callControllerMakeCommand($name){
-        $this->call('factory:controller',[
+        $this->call('base:controller',[
           'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
           '-m' => $name,
         ]);
     }
 
     public function callPaginatorMakeCommand($name){
-        $this->call('factory:paginator',[
+        $this->call('base:paginator',[
           'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
           '-m' => $name,
         ]);
     }
 
     public function callTransformerMakeCommand($name){
-        $this->call('factory:transformer',[
+        $this->call('base:transformer',[
           'name' => ucfirst($this->option('type')) . '\\' .ucfirst($name),
           '-m' => $name,
         ]);
     }
 
     public function callViewMakeCommand($name){
-        $this->call('factory:view',[
+        $this->call('base:view',[
           'name' => ucfirst($this->option('type')) . '\\' . ucfirst($name),
           '-m' => $name,
         ]);
     }
 
     public function callApiControllerMakeCommand($name){
-        $this->call('factory:apicontroller',[
+        $this->call('base:apicontroller',[
           'name' => ucfirst($this->option('type')) . '\\' . ucfirst($name),
           '-m' => $name,
         ]);
