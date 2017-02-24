@@ -1,0 +1,16 @@
+el: '.app-content',
+data(){
+  return{
+    params: function(){
+      if(params !== undefined)
+        return params
+      return []
+    },
+    eventbus: new Vue(),
+  }
+},
+methods:{
+  get: function(name){
+    return params[name]
+  }
+},

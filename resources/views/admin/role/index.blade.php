@@ -6,7 +6,6 @@
 
 @section('head')
   <script>
-    window.Laravel = { csrfToken: '{{ csrf_token() }}' };
     var params = {
       columns: [
         {

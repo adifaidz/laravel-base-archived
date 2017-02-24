@@ -1,6 +1,5 @@
 
 window.toastr = require('toastr');
-require('bootstrap-sass');
 require('eonasdan-bootstrap-datetimepicker')
 require('admin-lte');
 require('admin-lte/plugins/iCheck/icheck.js')

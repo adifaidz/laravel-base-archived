@@ -4,12 +4,6 @@
   Dasboard
 @endsection
 
-@section('head')
-  <script>
-    window.Laravel = { csrfToken: '{{ csrf_token() }}' };
-  </script>
-@endsection
-
 @section('page-header')
   Dashboard
 @endsection

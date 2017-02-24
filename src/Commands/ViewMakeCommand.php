@@ -94,12 +94,12 @@ class ViewMakeCommand extends GeneratorCommand
 
     protected function getViewStubs()
     {
-        return !empty(config('base.stubs.view')) ? config('base.stubs.view') : __DIR__ . '/stubs/views';
+        return !empty(config('base.stubs.view')) ? config('base.stubs.view') : __DIR__ . '/stubs/view';
     }
 
     protected function getVueStubs()
     {
-        return !empty(config('base.stubs.vue')) ? config('base.stubs.vue') : __DIR__ . '/stubs/vue';
+        return !empty(config('base.stubs.vue')) ? config('base.stubs.vue') : __DIR__ . '/stubs/view';
     }
 
     protected function getViewPath($rootNamespace)

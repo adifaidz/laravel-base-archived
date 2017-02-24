@@ -3,19 +3,19 @@
 @import "base_variables";
 
 // Fonts
-@import "node_modules/font-awesome/scss/font-awesome";
+@import "~font-awesome/scss/font-awesome";
 
 //Bootstrap Datetime Picker
-@import "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker";
+@import "~eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker";
 
 // Admin-lte base
-@import "node_modules/admin-lte/dist/css/AdminLTE";
+@import "~admin-lte/dist/css/AdminLTE";
 
 // Admin-lte skin
-@import "node_modules/admin-lte/dist/css/skins/skin-blue";
+@import "~admin-lte/dist/css/skins/skin-blue";
 
 // Admin-lte plugins
-@import "node_modules/admin-lte/plugins/iCheck/square/_all";
+@import "~admin-lte/plugins/iCheck/square/_all";
 
 // Toastr
-@import "node_modules/toastr/build/toastr";
+@import "~toastr/build/toastr";

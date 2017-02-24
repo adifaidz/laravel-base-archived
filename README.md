@@ -24,9 +24,8 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
     - **eonasdan-bootstrap-datetimepicker: ^4.17.43**
     - **font-awesome: ^4.7.0**
     - **jquery: ^3.1.0**
-    - **laravel-mix: ^0.8.1**
+    - **laravel-mix: ^0.8.4**
     - **lodash: ^4.17.4**
-    - **string-replace-loader: ^1.0.5**
     - **toastr: ^2.1.2**
     - **vue: ^2.0.1**
     - **vue-multiselect: 2.0.0-beta.13**
@@ -61,27 +60,6 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
     AdiFaidz\Base\Providers\BaseServiceProvider::class,
   ```
 
-- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts.
-
-  ```
-
-    php artisan base:install
-  ```
-
-- After that, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
-
-  ```
-
-    php artisan migrate
-  ```
-
-- Seed the tables
-
-  ```
-
-    php artisan db:seed --class="AdiFaidz\Base\Seeders\StartupSeeder"
-  ```
-
 - Add this to the **boot** method in **app\Providers\AppServiceProvider.php** to register all package routes
 
   ```
@@ -111,6 +89,27 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
         Illuminate\Contracts\Debug\ExceptionHandler::class,
         AdiFaidz\Base\Exceptions\Handler::class
     );
+  ```
+
+- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts.
+
+  ```
+
+    php artisan base:install
+  ```
+
+- After that, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
+
+  ```
+
+    php artisan migrate
+  ```
+
+- Seed the tables
+
+  ```
+
+    php artisan db:seed --class="AdiFaidz\Base\Seeders\StartupSeeder"
   ```
 
 - After that, run

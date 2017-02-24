@@ -59,70 +59,94 @@ class BaseInstallCommand extends Command
 
     protected function getSettings(){
       return [
-        'guard config' => [
+        'add guard config' => [
           'path'=> '/config/auth.php',
-          'stub'=> __DIR__ . '/stubs/config/guards.stub',
+          'stub'=> __DIR__ . '/stubs/install/addGuardsConfig.stub',
           'search' => "'guards' => [",
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'password config' => [
+        'add password config' => [
           'path' => '/config/auth.php',
-          'stub' => __DIR__ . '/stubs/config/passwords.stub',
+          'stub' => __DIR__ . '/stubs/install/addPasswordsConfig.stub',
           'search' => "'passwords' => [",
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'middleware group' => [
+        'add middleware group' => [
           'path' => '/app/Http/Kernel.php',
           'search' => 'protected $middlewareGroups = [',
-          'stub' => __DIR__ . '/stubs/middleware/middlewareGroup.stub',
+          'stub' => __DIR__ . '/stubs/install/addMiddlewareGroup.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'route middleware' => [
+        'add route middleware' => [
           'path' => '/app/Http/Kernel.php',
           'search' => 'protected $routeMiddleware = [',
-          'stub' => __DIR__ . '/stubs/middleware/routeMiddleware.stub',
+          'stub' => __DIR__ . '/stubs/install/addRouteMiddleware.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'javascript bundle' => [
+        'add import to js file' => [
           'path' => '/resources/assets/js/app.js',
           'search' => "require('./bootstrap');",
-          'stub' => __DIR__ . '/stubs/assets/js.stub',
+          'stub' => __DIR__ . '/stubs/install/addImportJs.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'css bundle' => [
+        'add import to sass file' => [
           'path' => '/resources/assets/sass/app.scss',
           'search' => '@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";',
-          'stub' => __DIR__ . '/stubs/assets/scss.stub',
+          'stub' => __DIR__ . '/stubs/install/addImportSass.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'webpack.mix' => [
+        'add import to mix file' => [
           'path' => '/webpack.mix.js',
           'search' => "const { mix } = require('laravel-mix');",
-          'stub' => __DIR__ . '/stubs/assets/mix.stub',
+          'stub' => __DIR__ . '/stubs/install/addImportMix.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
-        'package.json' => [
+        'add npm package' => [
           'path' => '/package.json',
           'search' => '  "devDependencies": {',
-          'stub' => __DIR__ . '/stubs/assets/package.stub',
+          'stub' => __DIR__ . '/stubs/install/addNpmPackage.stub',
+          'mode' => 'add',
           'prefix' => false,
           'multiline' => true,
           'callback' => 'checkPackage',
-        ]
+        ],
+        'app.js' => [
+          'path' => '/resources/assets/js/app.js',
+          'search' => "    el: '#app'",
+          'stub' => __DIR__ . '/stubs/install/addVueRootMethod.stub',
+          'mode' => 'replace',
+          'multiline' => false,
+          'callback' => null,
+        ],
+        '_variables.scss' => [
+          'path' => '/resources/assets/sass/_variables.scss',
+          'search' => '$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";',
+          'stub' => __DIR__ . '/stubs/install/changeIconPath.stub',
+          'mode' => 'replace',
+          'multiline' => false,
+          'callback' => null,
+        ],
       ];
     }
 
@@ -162,11 +186,15 @@ class BaseInstallCommand extends Command
       }
 
       if($valid) {
-
-          if ($setting['prefix']) {
-              $stub = $content . PHP_EOL . $setting['search'];
-          } else {
-              $stub = $setting['search'] . PHP_EOL . $content;
+          if($setting['mode'] === "add"){
+            if ($setting['prefix']) {
+                $stub = $content . PHP_EOL . $setting['search'];
+            } else {
+                $stub = $setting['search'] . PHP_EOL . $content;
+            }
+          }
+          else if($setting['mode'] === "replace"){
+            $stub = $content;
           }
 
           $originalContent = str_replace($setting['search'], $stub, $originalContent);
