@@ -139,7 +139,7 @@ class ViewMakeCommand extends GeneratorCommand
       $modelpos = 0;
 
       if(strrpos($model, '\\') !== 0){
-        $modelpos = strrpos($model, '\\');
+        $modelpos = strrpos($model, '\\') + 1;
       }
 
       $class = ucfirst(substr($model, $modelpos));
@@ -155,6 +155,18 @@ class ViewMakeCommand extends GeneratorCommand
     }
 
     public function replaceName(&$stub, $name){
+      $lastSlashPos = 0;
+
+      if(strrpos($name, '\\') !== 0){
+        $lastSlashPos = strrpos($name, '\\');
+      }
+
+      $classLength = strlen(substr($name, $lastSlashPos));
+      $layoutPath = substr($name, -($lastSlashPos + $classLength),  strlen($name) - $classLength);
+
+      $type = str_replace('\\', '.', strtolower($layoutPath));
+      $stub = str_replace('{{type}}', "$type", $stub);
+
       $viewpath  = str_replace('\\', '.', strtolower($name));
       $stub = str_replace('{{viewpath}}', "$viewpath", $stub);
 
