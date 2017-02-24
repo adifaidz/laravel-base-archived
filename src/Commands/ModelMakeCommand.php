@@ -6,7 +6,7 @@ use Illuminate\Foundation\Console\ModelMakeCommand as LaravelModelMakeCommand;
 
 class ModelMakeCommand extends LaravelModelMakeCommand
 {
-  protected $name = 'factory:model';
+  protected $name = 'base:model';
 
   protected $description = 'Create a new Eloquent model class based on Factory template';
 

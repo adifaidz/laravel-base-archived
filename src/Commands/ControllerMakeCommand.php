@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class ControllerMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'factory:controller {name} {--m|model=}';
+    protected $signature = 'base:controller {name} {--m|model=}';
 
     protected $description = 'Create a new controller class based on Factory template';
 

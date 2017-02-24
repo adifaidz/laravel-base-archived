@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class TransformerMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'factory:transformer {name} {--m|model=}';
+    protected $signature = 'base:transformer {name} {--m|model=}';
 
     protected $description = 'Create a new json transformer class that extends the base Transformer class';
 

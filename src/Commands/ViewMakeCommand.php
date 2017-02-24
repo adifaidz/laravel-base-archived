@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class ViewMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'factory:view {name} {--m|model=}';
+    protected $signature = 'base:view {name} {--m|model=}';
 
     protected $description = 'Create new CRUD ready views and vue components for a model class';
 

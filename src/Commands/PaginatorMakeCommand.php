@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 
 class PaginatorMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'factory:paginator {name} {--m|model=} {--t|transform}';
+    protected $signature = 'base:paginator {name} {--m|model=} {--t|transform}';
 
     protected $description = 'Create a new paginator class that uses json transformer';
 

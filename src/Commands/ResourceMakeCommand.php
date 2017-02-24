@@ -13,7 +13,7 @@ class ResourceMakeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'factory:resource {name} {{--t|type=client}} {{--m|migrate}}';
+    protected $signature = 'base:resource {name} {{--t|type=client}} {{--m|migrate}}';
 
     /**
      * The console command description.

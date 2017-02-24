@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class ApiControllerMakeCommand extends GeneratorCommand
 {
-    protected $signature = 'factory:apicontroller {name} {--m|model=}';
+    protected $signature = 'base:apicontroller {name} {--m|model=}';
 
     protected $description = 'Create a new controller class based on Factory template';
 
