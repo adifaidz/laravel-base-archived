@@ -131,7 +131,7 @@ class BaseInstallCommand extends Command
           'multiline' => true,
           'callback' => 'checkPackage',
         ],
-        'app.js' => [
+        'add vue root method' => [
           'path' => '/resources/assets/js/app.js',
           'search' => "    el: '#app'",
           'stub' => __DIR__ . '/stubs/install/addVueRootMethod.stub',
@@ -139,7 +139,7 @@ class BaseInstallCommand extends Command
           'multiline' => false,
           'callback' => null,
         ],
-        '_variables.scss' => [
+        'change icon path' => [
           'path' => '/resources/assets/sass/_variables.scss',
           'search' => '$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";',
           'stub' => __DIR__ . '/stubs/install/changeIconPath.stub',
