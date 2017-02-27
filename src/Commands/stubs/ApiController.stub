@@ -3,6 +3,7 @@
 namespace {{namespace}};
 
 use Illuminate\Http\Request;
+use AdiFaidz\Base\Http\Controllers\Api\ApiController;
 
 use {{modelnamespace}};
 use {{transformernamespace}};
