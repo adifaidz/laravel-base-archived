@@ -22,11 +22,11 @@ class Base
 
     public static function mapBaseRoutes(){
       Route::middleware(['web','client'])
-           ->namespace($this->namespace)
+           ->namespace("App\Http\Controllers")
            ->group(config('base.client_route'));
 
       Route::middleware(['web','admin'])
-           ->namespace($this->namespace)
+           ->namespace("App\Http\Controllers")
            ->group(config('base.admin_route'));
     }
 }
