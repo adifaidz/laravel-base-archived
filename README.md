@@ -91,28 +91,39 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
     );
   ```
 
-- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts.
+- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts and create route files.
 
   ```
 
     php artisan base:install
   ```
 
-- After that, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
+- After that, add this to the **map** method in **app\Providers\RouteServiceProvider.php** for generated package routes
+
+  ```
+
+    use AdiFaidz\Base\Base;
+
+    ...
+
+    Base::mapBaseRoutes();
+  ```
+
+- Then, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
 
   ```
 
     php artisan migrate
   ```
 
-- Seed the tables
+- **Seed** the tables
 
   ```
 
     php artisan db:seed --class="AdiFaidz\Base\Seeders\StartupSeeder"
   ```
 
-- After that, run
+- And finally, **run**
 
   ```
 
@@ -123,7 +134,7 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
     npm install && npm run dev
   ```
 
-- **Lastly**, **start** up your **server** and go to
+- **Start** up your **server** and go to
 
   ```
 
