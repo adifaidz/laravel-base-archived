@@ -19,4 +19,14 @@ class Base
             $callback(new RouteRegistrar($router));
         });
     }
+
+    public static function mapBaseRoutes(){
+      Route::middleware(['web','client'])
+           ->namespace($this->namespace)
+           ->group(config('base.client_route'));
+
+      Route::middleware(['web','admin'])
+           ->namespace($this->namespace)
+           ->group(config('base.admin_route'));
+    }
 }
