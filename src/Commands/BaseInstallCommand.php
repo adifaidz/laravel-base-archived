@@ -26,8 +26,22 @@ class BaseInstallCommand extends Command
       $this->changeSettings();
       $this->publishVueComponents();
       $this->publishAssets();
+      $this->createRouteFiles();
       $this->info("{$this->type} installed successfully.");
       $this->call('clean:all');
+    }
+
+    protected function changeSettings(){
+      $settings = $this->getSettings();
+
+      foreach ($settings as $name => $setting) {
+        $path = $setting['path'];
+        $fullPath = base_path() . $path;
+
+        if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
+            $this->info("Successfully registered $name");
+        }
+      }
     }
 
     protected function publishVueComponents(){
@@ -44,17 +58,9 @@ class BaseInstallCommand extends Command
       ]);
     }
 
-    protected function changeSettings(){
-      $settings = $this->getSettings();
-
-      foreach ($settings as $name => $setting) {
-        $path = $setting['path'];
-        $fullPath = base_path() . $path;
-
-        if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
-            $this->info("Successfully registered $name");
-        }
-      }
+    protected function createRouteFiles(){
+      $this->filesystem->put(config('base.admin_route'), '<?php' . PHP_EOL);
+      $this->filesystem->put(config('base.client_route'), '<?php' . PHP_EOL);
     }
 
     protected function getSettings(){
