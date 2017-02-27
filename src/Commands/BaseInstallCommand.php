@@ -39,7 +39,7 @@ class BaseInstallCommand extends Command
         $fullPath = base_path() . $path;
 
         if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
-            $this->info("Successfully registered $name");
+            $this->info("Successfully $name");
         }
       }
     }
