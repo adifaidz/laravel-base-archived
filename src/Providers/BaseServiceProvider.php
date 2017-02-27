@@ -52,7 +52,7 @@ class BaseServiceProvider extends ServiceProvider
     ];
 
     protected $devFacades = [
-      'Debugbar' => Barryvdh\Debugbar\Facade::class,
+      'Debugbar' => \Barryvdh\Debugbar\Facade::class,
     ];
 
     protected $middleware = [
@@ -213,6 +213,7 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function register(){
         $this->instances = [];
+        $this->aliasLoader = \Illuminate\Foundation\AliasLoader::getInstance();
 
         $this->registerProviders();
 
@@ -249,9 +250,8 @@ class BaseServiceProvider extends ServiceProvider
      * [registerFacades description]
      */
     public function registerFacades(){
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         foreach ($this->facades as $alias => $facade) {
-            $loader->alias($alias, $facade);
+            $this->aliasLoader->alias($alias, $facade);
         }
     }
 
@@ -259,11 +259,9 @@ class BaseServiceProvider extends ServiceProvider
      * [registerDevFacades description]
      */
     public function registerDevFacades(){
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-
         if ($this->app->environment(config('base.dev_env'))) {
-          foreach ($this->facades as $alias => $facade) {
-              $loader->alias($alias, $facade);
+          foreach ($this->devFacades as $alias => $facade) {
+              $this->aliasLoader->alias($alias, $facade);
           }
         }
     }
