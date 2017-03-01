@@ -47,7 +47,7 @@ export default {
   methods: {
     registerEvents : function() {
       var self = this
-      console.log(self);
+      
       this.$eventbus.$on('action_show', function(data){
         window.location.href = self.showUrl + '/' + data.id
       })

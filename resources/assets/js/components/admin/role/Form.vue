@@ -57,7 +57,6 @@ export default {
   },
   methods: {
     onSubmit: function(e){
-      console.log("IN");
       $('#permissions').val("[" + _.map(this.role.permissions, _.property('id')) + "]");
     }
   }

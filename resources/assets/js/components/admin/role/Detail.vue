@@ -57,7 +57,6 @@ export default {
     deleteData: function(){
       this.$http.delete(this.deleteUrl).then(
         (response) => {
-          console.log(response);
           window.location.href = this.redirectUrl
         },
         (response) => {

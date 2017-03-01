@@ -42,7 +42,6 @@ export default {
     var hiddenMethod = document.getElementsByName('_method')[0]
 
     if(hiddenMethod.value == "put"){this.$el.method = 'post'}
-    console.log(this.userprofile);
   }
 }
 </script>

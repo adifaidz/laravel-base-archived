@@ -157,12 +157,11 @@ export default {
       return (index % 2) === 0 ? 'odd' : 'even'
     },
     onCellClicked (data, field, event) {
-      console.log('cellClicked', field.name)
       if (field.name !== '__actions') {
       }
     },
     onCellDoubleClicked (data, field, event) {
-      console.log('cellDoubleClicked:', field.name)
+
     },
     registerEvents () {
       let self = this
@@ -190,8 +189,7 @@ export default {
       })
     },
     'paginationComponent' (val, oldVal) {
-      this.$nextTick(function() {
-        consolog.log('Pagination Component')
+      this.$nextTick(function() {ss
         this.$refs.pagination.setPaginationData(this.$refs.vuetable.tablePagination)
       })
     }
