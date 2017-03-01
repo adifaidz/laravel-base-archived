@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     deleteData: function(){
-      this.$http.delete(this.deleteUrl).then(
+      axios.delete(this.deleteUrl).then(
         (response) => {
           window.location.href = this.redirectUrl
         },

@@ -47,7 +47,7 @@ export default {
   methods: {
     registerEvents : function() {
       var self = this
-      
+
       this.$eventbus.$on('action_show', function(data){
         window.location.href = self.showUrl + '/' + data.id
       })
@@ -57,7 +57,7 @@ export default {
       })
 
       this.$eventbus.$on('action_delete', function(data){
-        this.$http.delete(self.deleteUrl + '/' + data.id).then(
+        axios.delete(self.deleteUrl + '/' + data.id).then(
           (response) => {
             if(self.redirectUrl !== undefined)
               window.location.href = self.redirectUrl

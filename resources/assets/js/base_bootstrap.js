@@ -5,14 +5,6 @@ require('eonasdan-bootstrap-datetimepicker')
 require('admin-lte')
 require('admin-lte/plugins/iCheck/icheck.js')
 
-Object.defineProperty(Vue.prototype, '$eventbus', {
-   get() {
-       return this.$root.eventbus
-   }
-})
-
-Vue.prototype.$http = axios;
-
 /** Vendor Components
  */
 Vue.component('vuetable', require('vuetable-2/src/components/Vuetable.vue'))
@@ -44,3 +36,11 @@ Vue.component('client-userprofile-form', require('./components/client/userprofil
 
 Vue.component('admin-userprofile-view', require('./components/admin/userprofile/Detail.vue'))
 Vue.component('admin-userprofile-form', require('./components/admin/userprofile/Form.vue'))
+
+Object.defineProperty(Vue.prototype, '$eventbus', {
+   get() {
+       return this.$root.eventbus
+   }
+})
+
+// Vue.prototype.$http = axios;
