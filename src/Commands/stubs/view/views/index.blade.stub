@@ -10,26 +10,16 @@
       columns: [
         {
           name:'id',
-          visible: false
-        },
-        {
-          name:'name',
-          sortField: 'name'
-        },
-        {
-          name:'type.desc',
-          title: 'Type'
-        },
-        {
-          name:'status.desc',
-          title: 'Status',
+          visible: true,
+          sortField: 'id',
+          title: 'Rec Id'
         },
         {
           name:'__component:base-actions'
         }
       ],
       sortOrder: [{
-          field: 'name',
+          field: 'id',
           direction: 'asc',
       }]
     }

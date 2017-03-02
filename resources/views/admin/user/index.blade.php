@@ -45,7 +45,7 @@
         <h3 class="box-title">User List</h3></div>
     <div class="box-body">
       <generic-table
-        api-url="{{route('api.user')}}"
+        api-url="{{route('api.admin.user')}}"
         create-url="{{route('admin.user.create')}}"
         show-url="{{route('admin.user.show', ['id' => null])}}"
         edit-url="{{route('admin.user.edit', ['id' => null])}}"

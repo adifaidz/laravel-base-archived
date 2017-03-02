@@ -49,7 +49,7 @@
         <h3 class="box-title">Role List</h3></div>
     <div class="box-body">
       <generic-table
-        api-url="{{route('api.role')}}"
+        api-url="{{route('api.admin.role')}}"
         create-url="{{route('admin.role.create')}}"
         show-url="{{route('admin.role.show', ['id' => null])}}"
         edit-url="{{route('admin.role.edit', ['id' => null])}}"

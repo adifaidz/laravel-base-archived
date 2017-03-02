@@ -8,14 +8,6 @@ use AdiFaidz\Base\BasePermission;
 class PermissionTransformer extends Transformer
 {
     public function transform($item){
-        return [
-          'id' => $item->id,
-					'name' => $item->name,
-					'display_name' => $item->display_name,
-					'description' => $item->description,
-					'created_at' => $item->created_at,
-					'updated_at' => $item->updated_at,
-
-        ];
+        return $item->toArray();
     }
 }

@@ -49,7 +49,7 @@
         <h3 class="box-title">Permission List</h3></div>
     <div class="box-body">
       <generic-table
-        api-url="{{route('api.permission')}}"
+        api-url="{{route('api.admin.permission')}}"
         create-url="{{route('admin.permission.create')}}"
         show-url="{{route('admin.permission.show', ['id' => null])}}"
         edit-url="{{route('admin.permission.edit', ['id' => null])}}"

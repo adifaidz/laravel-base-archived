@@ -9,6 +9,8 @@ class BasePermission extends LaratrustPermission
 {
     use TableInfoTrait;
 
+    protected $hidden = ['pivot'];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

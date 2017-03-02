@@ -1,5 +1,5 @@
 
-Route::get('/{{modelname}}', [
-  'as' => 'api.{{modelname}}',
+Route::get('/{{type}}/{{modelname}}', [
+  'as' => 'api.{{type}}.{{routename}}',
   'uses' => 'Api\{{model}}Controller@{{modelname}}',
 ]);

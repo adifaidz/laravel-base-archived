@@ -105,14 +105,23 @@ class ResourceMakeCommand extends Command
     }
 
     public function appendApiRoute($name){
+        $modelpos = 0;
+
+        if(strrpos($model, '\\') !== 0){
+          $modelpos = strrpos($name, '\\') + 1;
+        }
+
         $type = $this->option('type');
         $path = base_path("routes/api.php");
         $namespace =$this->parseName($name);
+        $routeName = str_replace('\\', '.', strtolower($name));
+        $class = strtolower(substr($model, $modelpos));
 
         $stub = $this->filesystem->get(__DIR__.'/stubs/apiRoutes.stub');
-        $stub = str_replace('{{modelname}}', strtolower($name), $stub);
+        $stub = str_replace('{{type}}', $type, $stub);
+        $stub = str_replace('{{routename}}', $routeName , $stub);
+        $stub = str_replace('{{modelname}}', $class, $stub);
         $stub = str_replace('{{model}}', ucfirst($type) . '\\' . ucfirst($name), $stub);
-        $stub = str_replace('{{modelnamespace}}', $namespace, $stub);
 
         if(!$this->filesystem->exists($path)){
             $this->makeDirectory($path);
