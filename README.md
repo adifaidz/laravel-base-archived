@@ -49,21 +49,24 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 - Install using **composer**
 
   ```
-
     composer require adifaidz/base
   ```
 
 - Register the service provider to your **providers** array in **config/app.php**
 
   ```
-
     AdiFaidz\Base\Providers\BaseServiceProvider::class,
   ```
 
+- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts and create route files.
+
+  ```
+    php artisan base:install
+  ```
+  
 - Add this to the **boot** method in **app\Providers\AppServiceProvider.php** to register all package routes
 
   ```
-
     use AdiFaidz\Base\Base;
 
     ...
@@ -74,7 +77,6 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 - Change the auth users provider model in config/auth.php to
 
   ```
-
     'users' => [
         'driver' => 'eloquent',
         'model' => AdiFaidz\Base\BaseUser::class,
@@ -84,24 +86,15 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 - Then, replace the **current** ExceptionHandler in **bootstrap/app.php** with Base ExceptionHandler class.
 
   ```
-
     $app->singleton(
         Illuminate\Contracts\Debug\ExceptionHandler::class,
         AdiFaidz\Base\Exceptions\Handler::class
     );
   ```
 
-- Run the **install** command using **artisan**, this will register guards, providers, password broker, route middlewares and middleware groups. It will also publish vue components, assets and bundling scripts and create route files.
-
-  ```
-
-    php artisan base:install
-  ```
-
 - After that, add this to the **map** method in **app\Providers\RouteServiceProvider.php** for generated package routes
 
   ```
-
     use AdiFaidz\Base\Base;
 
     ...
@@ -112,21 +105,18 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 - Then, **configure your database connection** and run **migrate**. Upon completion, tables for **users, roles, permissions** will be created
 
   ```
-
     php artisan migrate
   ```
 
 - **Seed** the tables
 
   ```
-
     php artisan db:seed --class="AdiFaidz\Base\Seeders\StartupSeeder"
   ```
 
 - And finally, **run**
 
   ```
-
     npm install && npm run watch
 
     or
@@ -137,7 +127,6 @@ Laravel wrapper for commonly used package and crud generators for basic crud fun
 - **Start** up your **server** and go to
 
   ```
-
     http://localhost/login
   ```
 
