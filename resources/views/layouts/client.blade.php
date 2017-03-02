@@ -60,7 +60,7 @@
                 <p>
                   {{ $loggedUser_profile->first_name or $loggedUser->email }}
                   <small>Member since {{ $loggedUser->created_at }}</small>
-                  <small>Last login at {{ $loggedUser->last_login }}</small>
+                  <small>Last login at {{ $loggedUser->last_login_at }}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
