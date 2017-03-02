@@ -10,12 +10,12 @@ $this->router->get('/admin/role', [
 
 $this->router->get('/admin/permission', [
   'as' => 'api.admin.permission',
-  'uses' => 'Api\AdminPermissionController@permission',
+  'uses' => 'Api\Admin\PermissionController@permission',
 ]);
 
 //Routes for AdiFaidz\Base\BaseUser
 
 $this->router->get('/admin/user', [
   'as' => 'api.admin.user',
-  'uses' => 'Api\AdminUserController@user',
+  'uses' => 'Api\Admin\UserController@user',
 ]);
