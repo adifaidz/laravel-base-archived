@@ -50,7 +50,7 @@
               <!-- The user image in the navbar-->
               <!--<img src="dist/img/user2-160x160.jpg" class="user-image hidden" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ $loggedUser_profile->first_name or 'Testing User' }}</span>
+              <span class="hidden-xs">{{ $loggedUser_profile->first_name or $loggedUser->email }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -58,9 +58,9 @@
                 <!--<img src="dist/img/user2-160x160.jpg" class="img-circle hidden" alt="User Image">-->
 
                 <p>
-                  {{ $loggedUser_profile->first_name or 'Testing User' }}
-                  <small>Member since {{ $loggedUser->created_at or 'Testing User' }}</small>
-                  <small>Last login at {{ $loggedUser->last_login or 'Testing User' }}</small>
+                  {{ $loggedUser_profile->first_name or $loggedUser->email }}
+                  <small>Member since {{ $loggedUser->created_at }}</small>
+                  <small>Last login at {{ $loggedUser->last_login }}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -93,7 +93,7 @@
           <!--<img src="dist/img/user2-160x160.jpg" class="img-circle hidden" alt="User Image">-->
         </div>
         <div class="pull-left info hidden">
-          <p>{{ $loggedUser_profile->first_name or 'Testing User' }}</p>
+          <p>{{ $loggedUser_profile->first_name or $loggedUser->email }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

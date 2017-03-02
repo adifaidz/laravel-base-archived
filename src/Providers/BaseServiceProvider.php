@@ -9,41 +9,15 @@ class BaseServiceProvider extends ServiceProvider
 {
     protected $providers = [
       \Laratrust\LaratrustServiceProvider::class,
-      ComposerServiceProvider::class,
       \AdiFaidz\Clean\Providers\CleanServiceProvider::class,
       \Lavary\Menu\ServiceProvider::class,
+      ComposerServiceProvider::class,
+      EventServiceProvider::class,
     ];
 
     protected $devProviders = [
       \Barryvdh\Debugbar\ServiceProvider::class,
       \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-    ];
-
-    protected $configs = [
-      'base' => [
-        'src' => __DIR__.'/../../config/base.php',
-        'dest' => 'base.php',
-      ],
-      'basetrust' => [
-        'src' => __DIR__.'/../../config/basetrust.php',
-        'dest' => 'basetrust.php',
-      ],
-      'base_seeder' => [
-        'src' => __DIR__.'/../../config/base_seeder.php',
-        'dest' => 'base_seeder.php',
-      ],
-      'debugbar' => [
-        'src' => __DIR__.'/../../config/debugbar.php',
-        'dest' => 'debugbar.php',
-      ],
-      'laravel-menu.settings' => [
-        'src' => __DIR__.'/../../config/laravel-menu/settings.php',
-        'dest' => 'laravel-menu/settings.php',
-      ],
-      'laravel-menu.views' => [
-        'src' => __DIR__.'/../../config/laravel-menu/views.php',
-        'dest' => 'laravel-menu/views.php',
-      ],
     ];
 
     protected $facades = [
@@ -72,6 +46,33 @@ class BaseServiceProvider extends ServiceProvider
         Commands\TransformerMakeCommand::class,
         Commands\PaginatorMakeCommand::class,
         Commands\ResourceMakeCommand::class,
+    ];
+
+    protected $configs = [
+      'base' => [
+        'src' => __DIR__.'/../../config/base.php',
+        'dest' => 'base.php',
+      ],
+      'basetrust' => [
+        'src' => __DIR__.'/../../config/basetrust.php',
+        'dest' => 'basetrust.php',
+      ],
+      'base_seeder' => [
+        'src' => __DIR__.'/../../config/base_seeder.php',
+        'dest' => 'base_seeder.php',
+      ],
+      'debugbar' => [
+        'src' => __DIR__.'/../../config/debugbar.php',
+        'dest' => 'debugbar.php',
+      ],
+      'laravel-menu.settings' => [
+        'src' => __DIR__.'/../../config/laravel-menu/settings.php',
+        'dest' => 'laravel-menu/settings.php',
+      ],
+      'laravel-menu.views' => [
+        'src' => __DIR__.'/../../config/laravel-menu/views.php',
+        'dest' => 'laravel-menu/views.php',
+      ],
     ];
 
     /**

@@ -35,8 +35,7 @@ class BaseInstallCommand extends Command
       $settings = $this->getSettings();
 
       foreach ($settings as $name => $setting) {
-        $path = $setting['path'];
-        $fullPath = base_path() . $path;
+        $fullPath = base_path($setting['path']);
 
         if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
             $this->info("Successfully $name");
@@ -66,7 +65,7 @@ class BaseInstallCommand extends Command
     protected function getSettings(){
       return [
         'add guard config' => [
-          'path'=> '/config/auth.php',
+          'path'=> 'config/auth.php',
           'stub'=> __DIR__ . '/stubs/install/addGuardsConfig.stub',
           'search' => "'guards' => [",
           'mode' => 'add',
@@ -75,7 +74,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add password config' => [
-          'path' => '/config/auth.php',
+          'path' => 'config/auth.php',
           'stub' => __DIR__ . '/stubs/install/addPasswordsConfig.stub',
           'search' => "'passwords' => [",
           'mode' => 'add',
@@ -84,7 +83,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add middleware group' => [
-          'path' => '/app/Http/Kernel.php',
+          'path' => 'app/Http/Kernel.php',
           'search' => 'protected $middlewareGroups = [',
           'stub' => __DIR__ . '/stubs/install/addMiddlewareGroup.stub',
           'mode' => 'add',
@@ -93,7 +92,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add route middleware' => [
-          'path' => '/app/Http/Kernel.php',
+          'path' => 'app/Http/Kernel.php',
           'search' => 'protected $routeMiddleware = [',
           'stub' => __DIR__ . '/stubs/install/addRouteMiddleware.stub',
           'mode' => 'add',
@@ -102,7 +101,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add import to js file' => [
-          'path' => '/resources/assets/js/app.js',
+          'path' => 'resources/assets/js/app.js',
           'search' => "require('./bootstrap');",
           'stub' => __DIR__ . '/stubs/install/addImportJs.stub',
           'mode' => 'add',
@@ -111,7 +110,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add import to sass file' => [
-          'path' => '/resources/assets/sass/app.scss',
+          'path' => 'resources/assets/sass/app.scss',
           'search' => '@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";',
           'stub' => __DIR__ . '/stubs/install/addImportSass.stub',
           'mode' => 'add',
@@ -120,7 +119,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add import to mix file' => [
-          'path' => '/webpack.mix.js',
+          'path' => 'webpack.mix.js',
           'search' => "const { mix } = require('laravel-mix');",
           'stub' => __DIR__ . '/stubs/install/addImportMix.stub',
           'mode' => 'add',
@@ -129,7 +128,7 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'add npm package' => [
-          'path' => '/package.json',
+          'path' => 'package.json',
           'search' => '  "devDependencies": {',
           'stub' => __DIR__ . '/stubs/install/addNpmPackage.stub',
           'mode' => 'add',
@@ -138,7 +137,7 @@ class BaseInstallCommand extends Command
           'callback' => 'checkPackage',
         ],
         'add vue root method' => [
-          'path' => '/resources/assets/js/app.js',
+          'path' => 'resources/assets/js/app.js',
           'search' => "    el: '#app'",
           'stub' => __DIR__ . '/stubs/install/addVueRootMethod.stub',
           'mode' => 'replace',
@@ -146,9 +145,17 @@ class BaseInstallCommand extends Command
           'callback' => null,
         ],
         'change icon path' => [
-          'path' => '/resources/assets/sass/_variables.scss',
+          'path' => 'resources/assets/sass/_variables.scss',
           'search' => '$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";',
           'stub' => __DIR__ . '/stubs/install/changeIconPath.stub',
+          'mode' => 'replace',
+          'multiline' => false,
+          'callback' => null,
+        ],
+        'add column to users table' => [
+          'path' => 'database/migrations/*_create_users_table.php',
+          'search' => '            $table->rememberToken();',
+          'stub' => __DIR__ . '/stubs/install/AddColumnToUsersTable.stub',
           'mode' => 'replace',
           'multiline' => false,
           'callback' => null,
@@ -167,7 +174,8 @@ class BaseInstallCommand extends Command
         return true;
     }
 
-    protected function compileContent($path, $setting){
+    protected function compileContent($givenPath, $setting){
+        $path = $this->filesystem->glob($givenPath)[0];
         $originalContent = $this->filesystem->get($path);
         $content = $this->filesystem->get($setting['stub']);
 
@@ -187,7 +195,7 @@ class BaseInstallCommand extends Command
     protected function replaceContentWithStub($originalContent, $content, $setting, $callback= null){
       $valid = !str_contains(trim($originalContent), trim($content));
 
-      if($callback !== null){
+      if($valid && $callback !== null){
         $valid = $valid && $this->{$callback}($originalContent,$content);
       }
 
