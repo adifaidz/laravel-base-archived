@@ -36,8 +36,8 @@ class BaseInstallCommand extends Command
 
       foreach ($settings as $name => $setting) {
         $fullPath = base_path($setting['path']);
-
-        if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
+        $content = $this->compileContent($fullPath, $setting);
+        if ($this->putContent($fullPath, $content)) {
             $this->info("Successfully $name");
         }
       }
@@ -156,7 +156,8 @@ class BaseInstallCommand extends Command
           'path' => 'database/migrations/*_create_users_table.php',
           'search' => '            $table->rememberToken();',
           'stub' => __DIR__ . '/stubs/install/AddColumnToUsersTable.stub',
-          'mode' => 'replace',
+          'mode' => 'add',
+          'prefix' => false,
           'multiline' => false,
           'callback' => null,
         ],
@@ -174,10 +175,10 @@ class BaseInstallCommand extends Command
         return true;
     }
 
-    protected function compileContent($givenPath, $setting){
-        $path = $this->filesystem->glob($givenPath)[0];
+    protected function compileContent(&$path, $setting){
+        $path = $this->filesystem->glob($path)[0];
         $originalContent = $this->filesystem->get($path);
-        $content = $this->filesystem->get($setting['stub']);
+        $content = rtrim($this->filesystem->get($setting['stub']));
 
         if(!$setting['multiline'])
           return $this->replaceContentWithStub($originalContent, $content, $setting);
