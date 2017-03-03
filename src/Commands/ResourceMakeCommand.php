@@ -107,7 +107,7 @@ class ResourceMakeCommand extends Command
     public function appendApiRoute($name){
         $modelpos = 0;
 
-        if(strrpos($model, '\\') !== 0){
+        if(strrpos($name, '\\') !== false){
           $modelpos = strrpos($name, '\\') + 1;
         }
 
@@ -115,7 +115,7 @@ class ResourceMakeCommand extends Command
         $path = base_path("routes/api.php");
         $namespace =$this->parseName($name);
         $routeName = str_replace('\\', '.', strtolower($name));
-        $class = strtolower(substr($model, $modelpos));
+        $class = strtolower(substr($name, $modelpos));
 
         $stub = $this->filesystem->get(__DIR__.'/stubs/apiRoutes.stub');
         $stub = str_replace('{{type}}', $type, $stub);

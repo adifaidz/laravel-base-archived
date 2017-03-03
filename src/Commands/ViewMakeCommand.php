@@ -138,7 +138,7 @@ class ViewMakeCommand extends GeneratorCommand
     public function replaceModel(&$stub, $model){
       $modelpos = 0;
 
-      if(strrpos($model, '\\') !== 0){
+      if(strrpos($model, '\\') !== false){
         $modelpos = strrpos($model, '\\') + 1;
       }
 
