@@ -13,7 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Illuminate\Auth\Events\Login' => ['App\Listeners\BaseAuthListener@postLogin'],
+        'Illuminate\Auth\Events\Login' => ['AdiFaidz\Base\Listeners\AuthListener@postLogin'],
     ];
 
     /**
