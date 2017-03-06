@@ -3,6 +3,7 @@
 namespace AdiFaidz\Base\Http\Controllers\Api\Admin;
 
 use Illuminate\Http\Request;
+use AdiFaidz\Base\Http\Controllers\Api\ApiController;
 
 use AdiFaidz\Base\BaseUserProfile;
 use AdiFaidz\Base\Transformers\UserProfileTransformer;

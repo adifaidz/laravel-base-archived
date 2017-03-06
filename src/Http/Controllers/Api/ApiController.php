@@ -1,6 +1,6 @@
 <?php
 
-namespace AdiFaidz\Base\Http\Controllers\Api\Admin;
+namespace AdiFaidz\Base\Http\Controllers\Api;
 
 use Illuminate\Http\Response;
 
