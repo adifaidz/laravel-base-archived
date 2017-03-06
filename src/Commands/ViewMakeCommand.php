@@ -82,9 +82,7 @@ class ViewMakeCommand extends GeneratorCommand
         unset($args['stub']);
       }
 
-      //Disable appending to app.js for now
-
-      //$this->appendAppJs($name, $args);
+      $this->appendAppJs($name, $args);
       $this->info("{$this->type} created successfully.");
     }
 
@@ -177,33 +175,26 @@ class ViewMakeCommand extends GeneratorCommand
     }
 
     public function appendAppJs($name, $args){
-      $filePath = base_path() .'\resources\assets\js\app.js';
-      $stubPath = __DIR__ . '/../stubs/app.js.stub';
-
-      $linecount = 0;
-      $handle = fopen($filePath, "r");
-      while(!feof($handle)){
-        $line = fgets($handle);
-
-        if(substr_count($line, "const app = new Vue({") !== 0){
-          break;
-        }
-        $linecount++;
-      }
-      fclose($handle);
-
-      $stublines = file( $stubPath , FILE_IGNORE_NEW_LINES );
+      $path = config('base.app_js_path');
       $vuepath  = str_replace('\\', '-', strtolower($name));
       $vuefilepath  = str_replace('\\', '/', strtolower($name));
 
-      foreach ($stublines as &$stub) {
-        $stub = str_replace('{{vuepath}}', $vuepath, $stub);
-        $stub = str_replace('{{vuefilepath}}',$vuefilepath , $stub);
+      $stub = $this->filesystem->get(__DIR__ . '/stubs/app.js.stub');
+      $stub = str_replace('{{vuepath}}', $vuepath, $stub);
+      $stub = str_replace('{{vuefilepath}}',$vuefilepath , $stub);
+
+      if(!$this->filesystem->exists($path)){
+          $this->makeDirectory($path);
+      }
+      else{
+        $routeFile = $this->filesystem->get($path);
+
+        if(str_contains(trim($routeFile), trim($stub))){
+            $this->info('Components already registered');
+            return;
+        }
       }
 
-      $lines = file( $filePath , FILE_IGNORE_NEW_LINES );
-      $searchline = $lines[$linecount];
-      array_splice($lines, $linecount-1, 0, $stublines);
-      file_put_contents($filePath, join("\n", $lines));
+      $this->filesystem->append($path, $stub);
     }
 }

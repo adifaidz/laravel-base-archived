@@ -1,5 +1,3 @@
-
-
 window.toastr = require('toastr')
 require('eonasdan-bootstrap-datetimepicker')
 require('admin-lte')

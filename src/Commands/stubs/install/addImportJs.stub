@@ -1,1 +1,2 @@
 require('./base_bootstrap');
+require('./base_app');
