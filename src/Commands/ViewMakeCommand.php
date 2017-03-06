@@ -185,6 +185,7 @@ class ViewMakeCommand extends GeneratorCommand
 
       if(!$this->filesystem->exists($path)){
           $this->makeDirectory($path);
+          $this->filesystem->put($path, '');
       }
       else{
         $routeFile = $this->filesystem->get($path);
