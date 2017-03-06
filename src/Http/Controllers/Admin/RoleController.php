@@ -53,7 +53,7 @@ class RoleController extends Controller
         $role->display_name = $request->display_name;
         $role->description = $request->description;
         $role->save();
-        $role->savePermissions(json_decode($request->permissions));
+        $role->syncPermissions(json_decode($request->permissions));
 
         return redirect()->route('admin.role.index');
     }
@@ -97,7 +97,7 @@ class RoleController extends Controller
         $role->display_name = $request->display_name;
         $role->description = $request->description;
         $role->save();
-        $role->savePermissions(json_decode($request->permissions));
+        $role->syncPermissions(json_decode($request->permissions));
 
         return redirect()->route('admin.role.show', ['id' => $role->id]);
     }
