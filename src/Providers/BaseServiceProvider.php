@@ -200,6 +200,7 @@ class BaseServiceProvider extends ServiceProvider
         $this->publishes([
           __DIR__.'/../../resources/assets/images/login-bg.jpg' => resource_path('assets/images/login-bg.jpg'),
           __DIR__.'/../../resources/assets/js/base_bootstrap.js' => resource_path('assets/js/base_bootstrap.js'),
+          __DIR__.'/../../resources/assets/js/base_app.js' => resource_path('assets/js/base_app.js'),
           __DIR__.'/../../resources/assets/sass/base_app.scss' => resource_path('assets/sass/base_app.scss'),
           __DIR__.'/../../resources/assets/sass/_base_variables.scss' => resource_path('assets/sass/_base_variables.scss'),
           __DIR__.'/../../.babelrc' => base_path('.babelrc'),
