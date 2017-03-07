@@ -1,1 +1,1 @@
-            $table->timestamp('last_login_at');
+            $table->timestamp('last_login_at')->nullable();
