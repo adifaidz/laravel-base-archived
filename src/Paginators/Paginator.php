@@ -21,9 +21,6 @@ abstract class Paginator {
       list($sortCol, $sortDir) = explode('|', request()->sort);
       $data->orderBy($sortCol, $sortDir);
     }
-    else {
-      $data->orderBy('id', 'asc');
-    }
 
     if (request()->exists('filter')) {
       $data = $this->filterData($data);
