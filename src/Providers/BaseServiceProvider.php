@@ -180,7 +180,7 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function publishViewStub(){
         $this->publishes([
-          __DIR__.'/../Commands/stubs/views' => resource_path('stubs/views'),
+          __DIR__.'/../Commands/stubs/view/views' => resource_path('stubs/views'),
         ], 'stub-view');
     }
 
@@ -189,8 +189,8 @@ class BaseServiceProvider extends ServiceProvider
      */
     public function publishVueStub(){
         $this->publishes([
-          __DIR__.'/../Commands/stubs/vue' => resource_path('stubs/vue'),
-        ], 'stub-view');
+          __DIR__.'/../Commands/stubs/view/vue' => resource_path('stubs/vue'),
+        ], 'stub-vue');
     }
 
     /**
