@@ -1,15 +1,15 @@
 @extends('base::layouts.{{type}}')
 
 @section('title')
-  Dasboard
+  {{modelhuman}} Detail
 @endsection
 
 @section('page-header')
-  Dashboard
+  <a href="{{route('{{viewpath}}.index')}}">{{modelhuman}}</a>
 @endsection
 
 @section('page-desc')
-  Dashboard
+  {{modelhuman}} Detail
 @endsection
 
 @section('content')

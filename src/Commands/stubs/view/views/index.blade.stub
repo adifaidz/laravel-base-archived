@@ -27,7 +27,7 @@
 @endsection
 
 @section('page-header')
-  {{modelhuman}}
+  <a href="{{route('{{viewpath}}.index')}}">{{modelhuman}}</a>
 @endsection
 
 @section('page-desc')
