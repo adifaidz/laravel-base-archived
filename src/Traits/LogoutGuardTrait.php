@@ -40,7 +40,7 @@ trait LogoutGuardTrait
       if (method_exists($this, 'logoutTo')) {
           return $this->logoutTo();
       }
-      return property_exists($this, 'logoutTo') ? $this->redirectTo : '/';
+      return property_exists($this, 'logoutTo') ? $this->logoutTo : '/';
     }
     /**
      * Check if a particular guard is active.
