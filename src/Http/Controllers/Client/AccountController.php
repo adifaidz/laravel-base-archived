@@ -10,7 +10,7 @@ use AdiFaidz\Base\Http\Controllers\Controller;
 use AdiFaidz\Base\Transformers\UserTransformer;
 use AdiFaidz\Base\BaseUser;
 
-class UserController extends Controller
+class AccountController extends Controller
 {
     function __construct(UserTransformer $transformer)
     {
@@ -64,7 +64,7 @@ class UserController extends Controller
     }
 
     public function savePassword(Request $request, BaseUser $user){
-        
+
     }
 
     public function validator(array $data)
