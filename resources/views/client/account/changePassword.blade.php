@@ -35,6 +35,7 @@
           </div>
           {{csrf_field()}}
           {{ method_field('PUT') }}
+          <input class="btn btn-primary" type="submit" name="submit" value="Save">
         </form>
       </div>
     </div>
