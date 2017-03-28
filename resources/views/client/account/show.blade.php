@@ -20,10 +20,10 @@
         <li><a href="{{route('client.userprofile.show', ['id'=> $user->userprofile->id])}}">Profile</a></li>
       </ul>
       <div class="col-md-9">
-        <client-userprofile-view
+        <client-account-view
           :userprofile="{{$userprofileJson or '{}' }}"
           edit-url="{{route('client.account.edit', ['id' => $user->id])}}"
-          ></client-userprofile-view>
+          ></client-account-view>
       </div>
     </div>
   </div>

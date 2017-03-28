@@ -35,6 +35,9 @@ Vue.component('client-userprofile-form', require('./components/client/userprofil
 Vue.component('admin-userprofile-view', require('./components/admin/userprofile/Detail.vue'))
 Vue.component('admin-userprofile-form', require('./components/admin/userprofile/Form.vue'))
 
+Vue.component('client-account-view', require('./components/client/account/Detail.vue'))
+Vue.component('client-account-form', require('./components/client/account/Form.vue'))
+
 Object.defineProperty(Vue.prototype, '$eventbus', {
    get() {
        return this.$root.eventbus
