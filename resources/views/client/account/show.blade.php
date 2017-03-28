@@ -23,7 +23,7 @@
         <client-account-view
           :user="{{$user or '{}' }}"
           edit-url="{{route('client.account.edit', ['id' => $user->id])}}"
-          change-password-url="{{route('client.account.changePassword', ['id' => $user->id])}}"
+          change-password-url="{{route('client.account.change_password', ['id' => $user->id])}}"
           ></client-account-view>
       </div>
     </div>
