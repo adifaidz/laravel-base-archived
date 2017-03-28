@@ -21,8 +21,9 @@
       </ul>
       <div class="col-md-9">
         <client-account-view
-          :userprofile="{{$userprofileJson or '{}' }}"
+          :user="{{$user or '{}' }}"
           edit-url="{{route('client.account.edit', ['id' => $user->id])}}"
+          change-password-url="{{route('client.account.changePassword', ['id' => $user->id])}}"
           ></client-account-view>
       </div>
     </div>

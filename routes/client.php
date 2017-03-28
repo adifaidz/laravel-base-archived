@@ -64,4 +64,14 @@ $this->router->group(['prefix' => 'account'], function () {
     'as' => 'client.account.show',
     'uses' => 'Client\AccountController@show',
   ]);
+
+  $this->router->get('/changePassword/{user}', [
+    'as' => 'client.account.change_password',
+    'uses' => 'Client\AccountController@changePassword',
+  ]);
+
+  $this->router->put('/savePassword/{user}', [
+    'as' => 'client.account.save_password',
+    'uses' => 'Client\AccountController@savePassword',
+  ]);
 });

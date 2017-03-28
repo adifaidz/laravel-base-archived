@@ -35,10 +35,6 @@ export default {
       type: String,
       required: true
     },
-    redirectUrl: {
-      type: String,
-      required: true
-    },
     changePasswordUrl: {
       type: String,
       required: true
