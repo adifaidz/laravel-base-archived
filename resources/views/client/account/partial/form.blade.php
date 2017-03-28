@@ -2,12 +2,12 @@
 
 {{-- This needs to be in partial to avoid redundancy of code to pass reference table data --}}
 
-<client-userprofile-form
-  :userprofile="{{$userprofileJson or '{}'}}"
+<client-account-form
+  :user="{{$userJson or '{}'}}"
   class="col-md-12"
   action="{{$route}}"
   method="{{$method}}"
 >
   {{ csrf_field() }}
   {{ method_field($method) }}
-</client-userprofile-form>
+</client-account-form>

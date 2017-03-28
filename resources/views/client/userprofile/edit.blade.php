@@ -1,24 +1,27 @@
 @extends('base::layouts.client')
 
 @section('title')
-  Edit  User Profile
+  Edit User Profile
 @endsection
 
 @section('page-header')
-   User Profile
+  Settings
 @endsection
 
 @section('page-desc')
-  Edit  User Profile
+  Edit User Profile
 @endsection
 
 @section('content')
   <div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Edit  User Profile</h3></div>
     <div class="box-body">
-      @include('base::client.userprofile.partial.form', ['route'=> route('client.userprofile.update',['id'=> $userprofile->id]), 'method' => 'put'])
+      <ul class="nav nav-pills nav-stacked col-md-3">
+        <li><a href="{{route('client.account.show', ['id'=> $userprofile->user->id])}}">Account</a></li>
+        <li class="active"><a href="{{route('client.userprofile.show', ['id'=> $userprofile->id])}}">Profile</a></li>
+      </ul>
+      <div class="col-md-9">
+        @include('base::client.userprofile.partial.form', ['route'=> route('client.userprofile.update',['id'=> $userprofile->id]), 'method' => 'put'])
+      </div>
     </div>
-    <div class="box-footer"></div>
   </div>
 @endsection
