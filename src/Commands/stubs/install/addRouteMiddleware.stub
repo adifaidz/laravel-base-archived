@@ -1,4 +1,5 @@
         'base_guest' => \AdiFaidz\Base\Http\Middleware\RedirectIfAuthenticated::class,
+        'check_owner' => \AdiFaidz\Base\Http\Middleware\BlockIfNotOwner::class,
         'role' => \Laratrust\Middleware\LaratrustRole::class,
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,

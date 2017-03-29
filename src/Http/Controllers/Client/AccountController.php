@@ -14,6 +14,7 @@ class AccountController extends Controller
 {
     function __construct(UserTransformer $transformer)
     {
+        $this->middleware('check_owner:user');
         $this->transformer = $transformer;
     }
 
@@ -79,6 +80,8 @@ class AccountController extends Controller
         });
 
         if($validator->fails()){
+            $user->password = Hash::make($request->password);
+            $user->save();
             return redirect()->back()
                    ->withErrors($validator);
         }
