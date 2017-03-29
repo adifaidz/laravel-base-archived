@@ -80,12 +80,12 @@ class AccountController extends Controller
         });
 
         if($validator->fails()){
-            $user->password = Hash::make($request->password);
-            $user->save();
             return redirect()->back()
                    ->withErrors($validator);
         }
         else{
+            $user->password = Hash::make($request->password);
+            $user->save();
             return redirect()->route('client.account.show', $user)
                    ->with('success', 'Password Changed');
         }
