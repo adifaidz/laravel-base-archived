@@ -56,7 +56,7 @@ class AccountController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->route('client.account.show', ['id' => $user->id]);
+        return redirect()->route('client.account.show', $user);
     }
 
     public function changePassword(BaseUser $user){
@@ -69,19 +69,22 @@ class AccountController extends Controller
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',
         ]);
+
         $validator->validate();
 
-        $validator->after(function(){
+        $validator->after(function($validator) use ($request, $user){
           if(!Hash::check($request->current_password, $user->password)){
-              $validator->errors()->add('current_password', 'Does not match with current password');
+              $validator->errors()->add('current_password', 'Current password does not match');
           }
         });
 
         if($validator->fails()){
-            dd("FAIL");
+            return redirect()->back()
+                   ->withErrors($validator);
         }
         else{
-            dd('OK');
+            return redirect()->route('client.account.show', $user)
+                   ->with('success', 'Password Changed');
         }
     }
 
