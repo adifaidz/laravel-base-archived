@@ -23,7 +23,7 @@
         <form action="{{route('client.account.save_password', ['id'=> $user->id])}}" method="post">
           <div class="form-group">
             <label for="name">Current</label>
-            <input class="form-control" type="password" id="current-password" name="current-password" placeholder="Current Password">
+            <input class="form-control" type="password" id="current_password" name="current_password" placeholder="Current Password">
           </div>
           <div class="form-group">
             <label for="name">New Password</label>
@@ -31,7 +31,7 @@
           </div>
           <div class="form-group">
             <label for="name">Confirm Password</label>
-            <input class="form-control" type="password" id="password-confirmation" name="password-confirmation" placeholder="Confirm Password">
+            <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
           </div>
           {{csrf_field()}}
           {{ method_field('PUT') }}

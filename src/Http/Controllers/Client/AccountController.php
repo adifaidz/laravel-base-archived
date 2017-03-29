@@ -64,11 +64,29 @@ class AccountController extends Controller
     }
 
     public function savePassword(Request $request, BaseUser $user){
+        $validator = $this->validator($request->all(), [
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+        $validator->validate();
 
+        $validator->after(function(){
+          if(!Hash::check($request->current_password, $user->password)){
+              $validator->errors()->add('current_password', 'Does not match with current password');
+          }
+        });
+
+        if($validator->fails()){
+            dd("FAIL");
+        }
+        else{
+            dd('OK');
+        }
     }
 
-    public function validator(array $data)
+    public function validator(array $data, $rule = [])
     {
-      return Validator::make($data, []);
+      return Validator::make($data, $rule);
     }
 }
