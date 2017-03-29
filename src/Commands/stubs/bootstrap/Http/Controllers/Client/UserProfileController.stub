@@ -58,7 +58,7 @@ class UserProfileController extends Controller
         $userprofile->dob= Carbon::createFromFormat('d/m/Y', $request->dob);
         $userprofile->save();
 
-        return redirect()->route('client.userprofile.show', ['id' => $userprofile->id]);
+        return redirect()->route('client.userprofile.show', $userprofile);
     }
 
     public function getFormReference()

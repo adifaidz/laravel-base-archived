@@ -19,8 +19,8 @@
     <div class="box-body">
       <admin-permission-view
         :permission="{{$permissionJson or '{}' }}"
-        edit-url="{{route('admin.permission.edit', ['id' => $permission->id])}}"
-        delete-url="{{route('admin.permission.destroy', ['id' => $permission->id])}}"
+        edit-url="{{route('admin.permission.edit', $permission)}}"
+        delete-url="{{route('admin.permission.destroy', $permission)}}"
         redirect-url="{{route('admin.permission.index')}}"
         ></admin-permission-view>
     </div>

@@ -51,9 +51,9 @@
       <generic-table
         api-url="{{route('api.admin.permission')}}"
         create-url="{{route('admin.permission.create')}}"
-        show-url="{{route('admin.permission.show', ['id' => null])}}"
-        edit-url="{{route('admin.permission.edit', ['id' => null])}}"
-        delete-url="{{route('admin.permission.destroy', ['id' => null])}}"
+        show-url="{{route('admin.permission.show', null)}}"
+        edit-url="{{route('admin.permission.edit', null)}}"
+        delete-url="{{route('admin.permission.destroy', null)}}"
         :columns="get('columns')"
         :sort-order="get('sortOrder')"
       ></generic-table>

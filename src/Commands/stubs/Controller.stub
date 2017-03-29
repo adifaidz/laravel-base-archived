@@ -91,7 +91,7 @@ class {{class}} extends Controller
         // Your update logic here
         ${{modelname}}->save();
 
-        return redirect()->route('{{viewpath}}.show', ['id' => ${{modelname}}->id]);
+        return redirect()->route('{{viewpath}}.show', ${{modelname}});
     }
 
     /**

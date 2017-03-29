@@ -47,9 +47,9 @@
       <generic-table
         api-url="{{route('api.admin.user')}}"
         create-url="{{route('admin.user.create')}}"
-        show-url="{{route('admin.user.show', ['id' => null])}}"
-        edit-url="{{route('admin.user.edit', ['id' => null])}}"
-        delete-url="{{route('admin.user.destroy', ['id' => null])}}"
+        show-url="{{route('admin.user.show', null)}}"
+        edit-url="{{route('admin.user.edit', null)}}"
+        delete-url="{{route('admin.user.destroy', null)}}"
         :columns="get('columns')"
         :sort-order="get('sortOrder')"
       ></generic-table>

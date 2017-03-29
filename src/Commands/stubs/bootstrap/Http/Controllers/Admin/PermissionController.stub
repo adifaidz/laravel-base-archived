@@ -96,7 +96,7 @@ class PermissionController extends Controller
         $permission->description = $request->description;
         $permission->save();
 
-        return redirect()->route('admin.permission.show', ['id' => $permission->id]);
+        return redirect()->route('admin.permission.show', $permission);
     }
 
     /**

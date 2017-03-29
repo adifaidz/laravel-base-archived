@@ -19,8 +19,8 @@
     <div class="box-body">
       <admin-user-view
         :user="{{$userJson or '{}' }}"
-        edit-url="{{route('admin.user.edit', ['id' => $user->id])}}"
-        delete-url="{{route('admin.user.destroy', ['id' => $user->id])}}"
+        edit-url="{{route('admin.user.edit', $user)}}"
+        delete-url="{{route('admin.user.destroy', $user)}}"
         redirect-url="{{route('admin.user.index')}}"
         ></admin-user-view>
     </div>

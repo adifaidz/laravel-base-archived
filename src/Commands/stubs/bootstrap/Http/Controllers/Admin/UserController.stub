@@ -106,7 +106,7 @@ class UserController extends Controller
         $user->save();
         $user->syncRoles(json_decode($request->roles));
 
-        return redirect()->route('admin.user.show', ['id' => $user->id]);
+        return redirect()->route('admin.user.show', $user);
     }
 
     /**

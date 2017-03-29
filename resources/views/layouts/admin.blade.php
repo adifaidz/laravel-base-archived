@@ -66,7 +66,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ route('admin.userprofile.show',['id' => $loggedUser_profile->id]) }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('admin.userprofile.show', $loggedUser_profile) }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>

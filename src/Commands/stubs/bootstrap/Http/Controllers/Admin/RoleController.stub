@@ -99,7 +99,7 @@ class RoleController extends Controller
         $role->save();
         $role->savePermissions(json_decode($request->permissions));
 
-        return redirect()->route('admin.role.show', ['id' => $role->id]);
+        return redirect()->route('admin.role.show', $role);
     }
 
     /**

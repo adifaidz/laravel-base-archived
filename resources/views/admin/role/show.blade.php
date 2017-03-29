@@ -19,8 +19,8 @@
     <div class="box-body">
       <admin-role-view
         :role="{{$roleJson or '{}' }}"
-        edit-url="{{route('admin.role.edit', ['id' => $role->id])}}"
-        delete-url="{{route('admin.role.destroy', ['id' => $role->id])}}"
+        edit-url="{{route('admin.role.edit', $role)}}"
+        delete-url="{{route('admin.role.destroy', $role)}}"
         redirect-url="{{route('admin.role.index')}}"
         ></admin-role-view>
     </div>

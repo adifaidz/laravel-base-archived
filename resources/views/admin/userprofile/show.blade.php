@@ -19,7 +19,7 @@
     <div class="box-body">
       <admin-userprofile-view
         :userprofile="{{$userprofileJson or '{}' }}"
-        edit-url="{{route('admin.userprofile.edit', ['id' => $userprofile->id])}}"
+        edit-url="{{route('admin.userprofile.edit', $userprofile)}}"
         ></admin-userprofile-view>
     </div>
 </div>
