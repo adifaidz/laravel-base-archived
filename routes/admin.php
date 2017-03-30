@@ -126,27 +126,27 @@ $this->router->bind('user', function ($value){
 $this->router->group(['prefix' => 'account'], function () {
 
   $this->router->get('/edit/{user}', [
-    'as' => 'client.account.edit',
+    'as' => 'admin.account.edit',
     'uses' => 'Client\AccountController@edit',
   ]);
 
   $this->router->put('{user}', [
-    'as' => 'client.account.update',
+    'as' => 'admin.account.update',
     'uses' => 'Client\AccountController@update',
   ]);
 
   $this->router->get('/show/{user}', [
-    'as' => 'client.account.show',
+    'as' => 'admin.account.show',
     'uses' => 'Client\AccountController@show',
   ]);
 
   $this->router->get('/changePassword/{user}', [
-    'as' => 'client.account.change_password',
+    'as' => 'admin.account.change_password',
     'uses' => 'Client\AccountController@changePassword',
   ]);
 
   $this->router->put('/savePassword/{user}', [
-    'as' => 'client.account.save_password',
+    'as' => 'admin.account.save_password',
     'uses' => 'Client\AccountController@savePassword',
   ]);
 });
