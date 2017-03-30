@@ -112,3 +112,41 @@ $this->router->group(['prefix' => 'userprofile'], function () {
     'uses' => 'Admin\UserProfileController@show',
   ]);
 });
+
+//Routes for Account
+
+$this->router->bind('user', function ($value){
+  try {
+    return config('basetrust.user')::findOrFail($value);
+  } catch (Exception $e) {
+    return App::abort('404');
+  }
+}) ;
+
+$this->router->group(['prefix' => 'account'], function () {
+
+  $this->router->get('/edit/{user}', [
+    'as' => 'client.account.edit',
+    'uses' => 'Client\AccountController@edit',
+  ]);
+
+  $this->router->put('{user}', [
+    'as' => 'client.account.update',
+    'uses' => 'Client\AccountController@update',
+  ]);
+
+  $this->router->get('/show/{user}', [
+    'as' => 'client.account.show',
+    'uses' => 'Client\AccountController@show',
+  ]);
+
+  $this->router->get('/changePassword/{user}', [
+    'as' => 'client.account.change_password',
+    'uses' => 'Client\AccountController@changePassword',
+  ]);
+
+  $this->router->put('/savePassword/{user}', [
+    'as' => 'client.account.save_password',
+    'uses' => 'Client\AccountController@savePassword',
+  ]);
+});

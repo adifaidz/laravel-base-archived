@@ -38,7 +38,7 @@ $this->router->group(['prefix' => 'userprofile'], function () {
   ]);
 });
 
-//Routes for UserProfile
+//Routes for Account
 
 $this->router->bind('user', function ($value){
   try {
