@@ -52,6 +52,8 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, BaseUserProfile $userprofile)
     {
+        $this->validator($request->all())->validate();
+
         $userprofile->first_name = $request->first_name;
         $userprofile->last_name = $request->last_name;
         $userprofile->ic= $request->ic;

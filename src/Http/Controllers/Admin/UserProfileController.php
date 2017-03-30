@@ -15,6 +15,7 @@ class UserProfileController extends Controller
 
     function __construct(UserProfileTransformer $transformer)
     {
+        $this->middleware('check_owner:userprofile,user');
         $this->transformer = $transformer;
     }
 

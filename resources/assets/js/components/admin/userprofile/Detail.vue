@@ -4,23 +4,23 @@
       <form>
         <div class="">
           <div class="form-group row">
-            <label for="name" class="col-md-2 text-right">First Name:</label>
+            <label for="first_name" class="col-md-2 text-right">First Name:</label>
             <div class="col-md-4">{{userprofile.first_name}}</div>
           </div>
           <div class="form-group row">
-            <label for="name" class="col-md-2 text-right">Last Name:</label>
+            <label for="last_name" class="col-md-2 text-right">Last Name:</label>
             <div class="col-md-4">{{userprofile.last_name}}</div>
           </div>
           <div class="form-group row">
-            <label for="name" class="col-md-2 text-right">IC No:</label>
+            <label for="ic" class="col-md-2 text-right">IC No:</label>
             <div class="col-md-4">{{userprofile.ic}}</div>
           </div>
           <div class="form-group row">
-            <label for="name" class="col-md-2 text-right">Address:</label>
+            <label for="address" class="col-md-2 text-right">Address:</label>
             <div class="col-md-4">{{userprofile.address}}</div>
           </div>
           <div class="form-group row">
-            <label for="name" class="col-md-2 text-right">Date of Birth:</label>
+            <label for="dob" class="col-md-2 text-right">Date of Birth:</label>
             <div class="col-md-4">{{userprofile.dob}}</div>
           </div>
         </div>
