@@ -103,7 +103,12 @@ class TransformerMakeCommand extends GeneratorCommand
 
         $structure = '';
         foreach ($columns as $column) {
-          $structure .= "'$column' => \$item->{$column},\n\t\t\t\t\t";
+          if(preg_match('/\s/',$column)){
+            $structure .= "'$column' => \$item['{$column}'],\n\t\t\t\t\t";
+          }
+          else{
+            $structure .= "'$column' => \$item->{$column},\n\t\t\t\t\t";
+          }
         }
 
         $stub = str_replace('{{structure}}', $structure, $stub);
